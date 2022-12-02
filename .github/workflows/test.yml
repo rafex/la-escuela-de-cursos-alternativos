@@ -1,0 +1,15 @@
+name: Test
+
+on:
+  push:
+    branches: [ "main" ]
+  pull_request:
+    branches: [ "main" ]
+    
+jobs:
+  runscript:
+    name: Example
+    runs-on: ubuntu-latest
+    steps:
+      - name: Call a Bash Script
+        run:  bash echo $(pwd) && ls -la && tree
