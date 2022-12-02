@@ -21,3 +21,5 @@ jobs:
         run:  echo $(pwd) && ls -la ${GITHUB_WORKSPACE} && tree ${GITHUB_WORKSPACE}
       - name: Build with Maven Wrapper
         run: cd ${GITHUB_WORKSPACE}/alternative-courses && chmod +x mvnw && ./mvnw -B package --file pom.xml
+      - name: Qué paso con el código?
+        run: cd ${GITHUB_WORKSPACE}/alternative-courses && ls -la && find -t f --iname "*.jar"
