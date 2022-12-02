@@ -12,4 +12,4 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Call a Bash Script
-        run:  bash echo $(pwd) && ls -la && tree
+        run:  echo $(pwd) && ls -la && tree
