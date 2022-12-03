@@ -8,17 +8,16 @@
 		<relativePath>../alternative-courses-parent</relativePath>
 	</parent>
 
-	<groupId>mx.rafex.tutum.school.webapp</groupId>
-	<artifactId>alternative-courses-webapp</artifactId>
+	<groupId>mx.rafex.tutum.school.service</groupId>
+	<artifactId>alternative-courses-service</artifactId>
 	<version>1.0-SNAPSHOT</version>
 
 	<packaging>jar</packaging>
 	<name>${project.artifactId}</name>
 	<!-- FIXME change it to the project's website -->
-	<url>http://www.example.com</url>
+	<url>https://rafex.dev</url>
 
 	<properties></properties>
-
 	<dependencies>
 		<dependency>
 			<groupId>mx.rafex.tutum.school.model</groupId>
@@ -27,38 +26,9 @@
 		</dependency>
 
 		<dependency>
-			<groupId>mx.rafex.tutum.school.service</groupId>
-			<artifactId>alternative-courses-service</artifactId>
+			<groupId>mx.rafex.tutum.school.repository</groupId>
+			<artifactId>alternative-courses-repository</artifactId>
 			<version>1.0-SNAPSHOT</version>
 		</dependency>
-
-		<dependency>
-			<groupId>org.zkoss.zkspringboot</groupId>
-			<artifactId>zkspringboot-starter</artifactId>
-			<type>pom</type>
-		</dependency>
-
-		<dependency>
-			<groupId>org.springframework.boot</groupId>
-			<artifactId>spring-boot-devtools</artifactId>
-			<optional>true</optional>
-		</dependency>
 	</dependencies>
-
-	<build>
-		<plugins>
-			<plugin>
-				<groupId>org.springframework.boot</groupId>
-				<artifactId>spring-boot-maven-plugin</artifactId>
-				<executions>
-					<execution>
-						<goals>
-							<goal>repackage</goal>
-						</goals>
-					</execution>
-				</executions>
-			</plugin>
-		</plugins>
-	</build>
-
 </project>

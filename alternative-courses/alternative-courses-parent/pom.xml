@@ -59,6 +59,7 @@
 		<opencsv.version>5.6</opencsv.version>
 		<azure-storage-blob.version>12.17.1</azure-storage-blob.version>
 		<itextpdf.version>5.5.13.3</itextpdf.version>
+		<zkspringboot.version>2.5.12</zkspringboot.version>
 	</properties>
 
 	<dependencyManagement>
@@ -75,6 +76,12 @@
 			<!-- Test -->
 
 			<!-- 3er -->
+			<dependency>
+				<groupId>org.zkoss.zkspringboot</groupId>
+				<artifactId>zkspringboot-starter</artifactId>
+				<type>pom</type>
+				<version>${zkspringboot.version}</version>
+			</dependency>
 			<dependency>
 				<groupId>com.opencsv</groupId>
 				<artifactId>opencsv</artifactId>

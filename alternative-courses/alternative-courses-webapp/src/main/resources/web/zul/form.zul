@@ -1,0 +1,37 @@
+<zk xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns="http://www.zkoss.org/2005/zul"
+	xmlns:h="http://www.w3.org/1999/xhtml"
+	xsi:schemaLocation="
+      http://www.zkoss.org/2005/zul https://www.zkoss.org/2005/zul/zul.xsd
+      http://www.w3.org/1999/xhtml https://www.w3.org/2002/08/xhtml/xhtml1-strict.xsd">
+	
+
+	<window title="Form" width="600px" border="normal"
+		viewModel="@id('vm') @init('mx.rafex.tutum.school.webapp.viewModel.MarkViewModel')"
+		validationMessages="@id('vmsgs')"
+		form="@id('fx') @load(vm.subject) @save(vm.subject, before='submit')"
+		style="margin:auto">
+
+		<grid model="@init(vm.subjectList)"
+			emptyMessage="Nothing in Inbox.">
+			<columns>
+				<column label="Materia" width="120px" />
+				<column label="Calificación" />
+			</columns>
+			<template name="model">
+				<row>
+					<label value="@init(each.name)" width="150px" />
+					<hlayout>
+						<textbox value="@bind(each.score)" width="150px"
+							tabindex="1" />
+					</hlayout>
+				</row>
+			</template>
+		</grid>
+		<separator />
+		<label visible="@load(empty vmsgs)"
+			value="@load(empty vmsgs ? 'Form successfully submitted!' : '', before='submit')" />
+		<button label="Submit" onClick="@command('submit')"
+			width="100px" height="30px" />
+	</window>
+</zk>
