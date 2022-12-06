@@ -54,6 +54,8 @@ jobs:
       -
         name: Set up Docker Buildx
         uses: docker/setup-buildx-action@v2
+      -
+        name: docker build
         run: cd ${GITHUB_WORKSPACE}/alternative-courses && docker build . -t tutum-demo:dev01 
 
 
