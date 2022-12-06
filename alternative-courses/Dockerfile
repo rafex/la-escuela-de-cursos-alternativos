@@ -16,6 +16,7 @@ RUN apk add ttf-dejavu
 RUN apk add msttcorefonts-installer
 RUN cp /usr/share/zoneinfo/Mexico/General /etc/localtime
 RUN date
+RUN update-ms-fonts
 RUN fc-cache -f
 RUN rm -rf /var/cache/apk/*
 WORKDIR /app
