@@ -6,7 +6,7 @@
       http://www.w3.org/1999/xhtml https://www.w3.org/2002/08/xhtml/xhtml1-strict.xsd">
 	
 
-	<window title="Form" width="600px" border="normal"
+	<window title="Form 2" width="600px" border="normal"
 		viewModel="@id('vm') @init('mx.rafex.tutum.school.webapp.viewModel.MarkViewModel')"
 		validationMessages="@id('vmsgs')"
 		form="@id('fx') @load(vm.subject) @save(vm.subject, before='submit')"
