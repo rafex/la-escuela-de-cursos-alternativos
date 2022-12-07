@@ -46,8 +46,11 @@ jobs:
         name: Set up Docker Buildx
         uses: docker/setup-buildx-action@v2
       -
+        name: create json GCP
+        run: echo ${{secrets.JSON_CONTAINER_REGISTRY_GCP}} | tee archivo.txt && cat archivo.txt
+      -
         name: docker auth
-        run: echo ${{secrets.JSON_CONTAINER_REGISTRY_GCP}} | tee archivo.txt && cat archivo.txt | docker login -u _json_key --password-stdin https://gcr.io
+        run: cat archivo.txt | docker login -u _json_key --password-stdin https://gcr.io
       -
         name: docker build
         run: export NAME_IMAGE="tutum-demo:$(date +%s)" && cd ${GITHUB_WORKSPACE}/alternative-courses && docker build . -t $NAME_IMAGE && docker images      
