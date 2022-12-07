@@ -12,6 +12,13 @@ cd alternative-courses
 ls -la
 docker build . -t $NAME_AND_TAG_IMAGE && docker images
 echo "Docker Tag"
-docker tag $NAME_AND_TAG_IMAGE gcr.io/${PROJECT_ID_GCP}/$NAME_IMAGE:hola
+docker tag $NAME_AND_TAG_IMAGE gcr.io/${PROJECT_ID_GCP}/$NAME_AND_TAG_IMAGE
 echo "Docker Push"
-docker push gcr.io/${PROJECT_ID_GCP}/$NAME_IMAGE:hola
+docker push gcr.io/${PROJECT_ID_GCP}/$NAME_AND_TAG_IMAGE
+
+echo "Deploy GKE"
+
+sudo snap install google-cloud-cli --classic
+gcloud auth activate-service-account docker-container-registry@${PROJECT_ID_GCP}.iam.gserviceaccount.com --key-file=gcp_service.json --project=${PROJECT_ID_GCP}
+gcloud container clusters get-credentials cluster-1 --region us-central1-c
+kubectl set image deployment nginx-1 tutum-demo-1-1=gcr.io/${PROJECT_ID_GCP}/$NAME_AND_TAG_IMAGE
