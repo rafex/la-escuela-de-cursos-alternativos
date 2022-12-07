@@ -25,8 +25,5 @@ docker tag $NAME_AND_TAG_IMAGE gcr.io/${PROJECT_ID_GCP}/$NAME_AND_TAG_IMAGE
 echo "Docker Push"
 docker push gcr.io/${PROJECT_ID_GCP}/$NAME_AND_TAG_IMAGE
 
-#echo "Deploy GKE"
-#sudo snap install google-cloud-cli --classic
-#gcloud auth activate-service-account --key-file=gcp_service.json --project=${PROJECT_ID_GCP}
-#gcloud container clusters get-credentials cluster-1 --region us-central1-c
-#kubectl set image deployment nginx-1 tutum-demo-1-1=gcr.io/${PROJECT_ID_GCP}/$NAME_AND_TAG_IMAGE
+echo "Deploy GKE"
+kubectl set image deployment nginx-1 tutum-demo-1-1=gcr.io/${PROJECT_ID_GCP}/$NAME_AND_TAG_IMAGE
