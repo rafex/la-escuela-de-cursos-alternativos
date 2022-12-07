@@ -33,7 +33,7 @@ jobs:
     env: 
       NAME_IMAGE: tutum-demo-1
       TAG_IMAGE: $(date +%s)
-      NAME_AND_TAG_IMAGE: $NAME_IMAGE:$TAG_IMAGE
+      NAME_AND_TAG_IMAGE: ${{ env.NAME_IMAGE }}:${{ env.TAG_IMAGE }}
     steps:
       -
         name: Checkout
