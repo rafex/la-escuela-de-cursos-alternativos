@@ -57,17 +57,6 @@ jobs:
         name: Display structure of downloaded files
         run: ls -alhR
         working-directory: artifact
-      - 
-        id: 'auth'
-        uses: 'google-github-actions/auth@v1'
-        with:
-          credentials_json: '${{ secrets.JSON_CONTAINER_REGISTRY_GCP }}'
-      - 
-        name: 'Set up Cloud SDK'
-        uses: 'google-github-actions/setup-gcloud@v1'
-      - 
-        name: 'Use gcloud CLI'
-        run: 'gcloud info'
       -
         # Add support for more platforms with QEMU (optional)
         # https://github.com/docker/setup-qemu-action
@@ -80,14 +69,20 @@ jobs:
         name: Run Script Docker
         run: bash ${GITHUB_WORKSPACE}/docker/build_and_push.bash ${NAME_IMAGE} ${{secrets.PROJECT_ID_GCP}} ${{secrets.JSON_CONTAINER_REGISTRY_GCP}}
       - 
-        name: Deploy GCP
-        uses: actions-hub/gcloud@master
-        env:
-          PROJECT_ID: ${{secrets.PROJECT_ID_GCP}}
-          APPLICATION_CREDENTIALS: ${{secrets.JSON_CONTAINER_REGISTRY_GCP}}
+        id: 'auth'
+        uses: 'google-github-actions/auth@v1'
         with:
-          args: get pods
-          cli: kubectl
+          credentials_json: '${{ secrets.JSON_CONTAINER_REGISTRY_GCP }}'
+      - 
+        name: 'Set up Cloud SDK'
+        uses: 'google-github-actions/setup-gcloud@v1'
+      - 
+        name: 'Use gcloud CLI'
+        run: |-
+          gcloud info
+          gcloud config set project ${{secrets.PROJECT_ID_GCP}}
+          gcloud container clusters get-credentials cluster-1 --region us-central1-c
+          kubectl get pods
       
       
           
