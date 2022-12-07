@@ -3,8 +3,12 @@ name: Main
 on:
   push:
     branches: [ "main" ]
+    paths:
+      - '!sql/**'
   pull_request:
     branches: [ "main" ]
+    paths:
+      - '!sql/**'
     
 jobs:
   maven:
