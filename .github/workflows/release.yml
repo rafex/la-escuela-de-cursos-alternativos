@@ -3,8 +3,12 @@ name: Release
 on:
   push:
     branches: [ "release" ]
+    paths:
+      - 'alternative-courses/**'
   pull_request:
     branches: [ "release" ]
+    paths:
+      - 'alternative-courses/**'
     
 jobs:
   maven:
