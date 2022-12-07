@@ -54,4 +54,17 @@ jobs:
       -
         name: Run Script Docker
         run: bash ${GITHUB_WORKSPACE}/docker/build_and_push.bash ${NAME_IMAGE} ${{secrets.PROJECT_ID_GCP}}
+      -
+        name: Deploy GKE
+        run: |-
+          apt-get install apt-transport-https ca-certificates gnupg
+          echo "deb [signed-by=/usr/share/keyrings/cloud.google.gpg] https://packages.cloud.google.com/apt cloud-sdk main" | tee -a /etc/apt/sources.list.d/google-cloud-sdk.list
+          curl https://packages.cloud.google.com/apt/doc/apt-key.gpg | sudo apt-key --keyring /usr/share/keyrings/cloud.google.gpg add -
+          apt-get update && sudo apt-get install google-cloud-cli
+          gcloud auth activate-service-account docker-container-registry@${{secrets.PROJECT_ID_GCP}}.iam.gserviceaccount.com --key-file=gcp_service.json
+          gcloud container clusters get-credentials cluster-1 --region us-central1-c
+          kubectl create deployment nginx-1 --image=tutum-demo-1:latest
+
+
+
 
