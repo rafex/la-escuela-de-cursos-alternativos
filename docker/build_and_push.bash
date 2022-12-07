@@ -8,7 +8,7 @@ NAME_AND_TAG_IMAGE=$NAME_IMAGE:$TAG_IMAGE
 echo "Docker Auth"
 cat gcp_service.json | docker login -u _json_key --password-stdin https://gcr.io
 echo "Docker Build"
-cd ../alternative-courses > /dev/null
+cd alternative-courses
 ls -la
 docker build . -t $NAME_AND_TAG_IMAGE && docker images
 echo "Docker Tag"
