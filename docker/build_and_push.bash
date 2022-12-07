@@ -26,4 +26,7 @@ echo "Docker Push"
 docker push gcr.io/${PROJECT_ID_GCP}/$NAME_AND_TAG_IMAGE
 
 echo "Deploy GKE"
-kubectl set image deployment nginx-1 tutum-demo-1-1=gcr.io/${PROJECT_ID_GCP}/$NAME_AND_TAG_IMAGE
+kubectl set image deployment tutum-demo-1 tutum-demo-1-sha256-1=gcr.io/${PROJECT_ID_GCP}/$NAME_AND_TAG_IMAGE
+
+
+
