@@ -37,7 +37,7 @@ jobs:
           cd flyway-9.8.1/lib 
           wget https://jdbc.postgresql.org/download/postgresql-42.5.1.jar
           ls -lah
-          cd ${GITHUB_WORKSPACE}
+          cd ${GITHUB_WORKSPACE}/sql/flyway
           ls -lah
-          bash ${GITHUB_WORKSPACE}/sql/flyway/myflyway.sh info prod
+          bash myflyway.sh info prod
 
