@@ -14,7 +14,7 @@ ls -la
 cat gcp_service.json
 
 echo "Docker Auth"
-echo $JSON_GCP | docker login -u _json_key_base64 --password-stdin https://gcr.io
+cat gcp_service.json | docker login -u _json_key --password-stdin https://gcr.io
 echo "Docker Build"
 #cd alternative-courses
 ls -la

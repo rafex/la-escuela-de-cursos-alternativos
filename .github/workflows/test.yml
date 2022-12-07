@@ -57,6 +57,17 @@ jobs:
         name: Display structure of downloaded files
         run: ls -alhR
         working-directory: artifact
+      - 
+        id: 'auth'
+        uses: 'google-github-actions/auth@v1'
+        with:
+          credentials_json: '${{ secrets.JSON_CONTAINER_REGISTRY_GCP }}'
+      - 
+        name: 'Set up Cloud SDK'
+        uses: 'google-github-actions/setup-gcloud@v1'
+      - 
+        name: 'Use gcloud CLI'
+        run: 'gcloud info'
       -
         # Add support for more platforms with QEMU (optional)
         # https://github.com/docker/setup-qemu-action
