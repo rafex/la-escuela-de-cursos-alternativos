@@ -78,7 +78,9 @@ jobs:
         run: |-
           gcloud info
           # gcloud config set project ${{secrets.PROJECT_ID_GCP}}
+          echo "que pasa"
           gcloud container clusters get-credentials cluster-1 --region us-central1-c
+          echo "kubectl"
           kubectl get pods
       -
         name: Run Script Docker
