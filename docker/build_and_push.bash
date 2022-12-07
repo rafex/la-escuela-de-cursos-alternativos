@@ -12,9 +12,6 @@ cd alternative-courses
 ls -la
 docker build . -t $NAME_AND_TAG_IMAGE && docker images
 echo "Docker Tag"
-docker tag $NAME_AND_TAG_IMAGE gcr.io/${PROJECT_ID_GCP}/$NAME_IMAGE
+docker tag $NAME_AND_TAG_IMAGE gcr.io/${PROJECT_ID_GCP}/$NAME_IMAGE:hola
 echo "Docker Push"
-docker push gcr.io/${PROJECT_ID_GCP}/$NAME_IMAGE
-DOCKER_PUSH=$?
-echo "que paso"
-echo $DOCKER_PUSH
+docker push gcr.io/${PROJECT_ID_GCP}/$NAME_IMAGE:hola
