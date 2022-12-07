@@ -2,14 +2,14 @@ name: Develop
 
 on:
   push:
-    branches: [ "develop" ]
+    branches: [ "develop" ]    
     paths:
       - '!sql/**'
   pull_request:
     branches: [ "develop" ]
     paths:
       - '!sql/**'
-    
+        
 jobs:
   maven:
     name: Maven compile
