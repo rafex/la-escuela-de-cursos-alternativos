@@ -65,16 +65,18 @@ jobs:
       -
         name: Set up Docker Buildx
         uses: docker/setup-buildx-action@v2
-      - 
-        name: create-json
-        id: create-json
-        uses: jsdaniell/create-json@v1.2.1
-        with:
-          name: "gcp_service.json"
-          json: ${{secrets.JSON_CONTAINER_REGISTRY_GCP}}
       -
         name: Run Script Docker
-        run: bash ${GITHUB_WORKSPACE}/docker/build_and_push.bash ${NAME_IMAGE} ${{secrets.PROJECT_ID_GCP}}
+        run: bash ${GITHUB_WORKSPACE}/docker/build_and_push.bash ${NAME_IMAGE} ${{secrets.PROJECT_ID_GCP}} ${{secrets.JSON_CONTAINER_REGISTRY_GCP}}
+      - 
+        name: Deploy GCP
+        uses: actions-hub/gcloud@master
+        env:
+          PROJECT_ID: ${{secrets.PROJECT_ID_GCP}}
+          APPLICATION_CREDENTIALS: ${{secrets.JSON_CONTAINER_REGISTRY_GCP}}
+        with:
+          args: get pods
+          cli: kubectl
       
           
 
