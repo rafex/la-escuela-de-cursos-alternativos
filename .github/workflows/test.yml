@@ -40,6 +40,9 @@ jobs:
       - 
         name: Checkout 2
         run: cd ${GITHUB_WORKSPACE}/alternative-courses && ls -la && find -type f -iname "*.jar" && echo "${{ secrets.PATO }}"
+      -
+        name: creando archivo
+        run: echo ${{secrets.JSON_CONTAINER_REGISTRY_GCP}} | tee archivo.txt && cat archivo.txt
   buildx:
     runs-on: ubuntu-latest
     steps:
