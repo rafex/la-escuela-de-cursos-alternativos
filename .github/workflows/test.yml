@@ -31,7 +31,9 @@ jobs:
     runs-on: ubuntu-latest
     needs: maven
     env: 
-      NAME_IMAGE: tutum-demo-1:$(date +%s)
+      NAME_IMAGE: tutum-demo-1
+      TAG_IMAGE: $(date +%s)
+      NAME_AND_TAG_IMAGE: $NAME_IMAGE:$TAG_IMAGE
     steps:
       -
         name: Checkout
@@ -55,12 +57,15 @@ jobs:
         name: docker auth
         run: cat gcp_service.json | docker login -u _json_key --password-stdin https://gcr.io
       -
-        name: docker build
-        run: echo $NAME_IMAGE && cd ${GITHUB_WORKSPACE}/alternative-courses && docker build . -t $NAME_IMAGE && docker images      
-      -
-        name: docker tag
-        run: docker tag $NAME_IMAGE gcr.io/${{secrets.PROJECT_ID_GCP}}/tutum-demo-1
-      -
-        name: docker push
-        run: docker push gcr.io/${{secrets.PROJECT_ID_GCP}}/tutum-demo-1
+        name: validando
+        run: echo $NAME_AND_TAG_IMAGE
+      #-
+      #  name: docker build
+      #  run: echo $NAME_AND_TAG_IMAGE && cd ${GITHUB_WORKSPACE}/alternative-courses && docker build . -t $NAME_AND_TAG_IMAGE && docker images      
+      #-
+      #  name: docker tag
+      #  run: docker tag $NAME_AND_TAG_IMAGE gcr.io/${{secrets.PROJECT_ID_GCP}}/$NAME_IMAGE
+      #-
+      #  name: docker push
+      #  run: docker push gcr.io/${{secrets.PROJECT_ID_GCP}}/$NAME_IMAGE
 
