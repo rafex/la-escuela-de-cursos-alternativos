@@ -2,13 +2,9 @@ name: Main
 
 on:
   push:
-    branches: [ "main" ]
-    paths-ignore:
-      - 'sql/**'
+    branches: [ "main" ]    
   pull_request:
     branches: [ "main" ]
-    paths-ignore:
-      - 'sql/**'
     
 jobs:
   maven:
