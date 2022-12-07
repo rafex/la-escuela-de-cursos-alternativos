@@ -2,13 +2,13 @@ name: Develop
 
 on:
   push:
-    branches: [ "develop" ]    
+    branches: [ "develop" ]
     paths:
-      - '!sql/**'
+      - 'alternative-courses/**'
   pull_request:
     branches: [ "develop" ]
     paths:
-      - '!sql/**'
+      - 'alternative-courses/**'
         
 jobs:
   maven:
