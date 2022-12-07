@@ -1,10 +1,11 @@
 name: Update DataBase
 
 on:
+  workflow_dispatch:
   push:
     branches: [ "main","release","develop" ]
     paths:
-      - 'sql/**'
+      - 'sql/**'      
   pull_request:
     branches: [ "main","release","develop" ]
     paths:
