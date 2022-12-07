@@ -14,6 +14,14 @@ jobs:
       - 
         name: Checkout
         uses: actions/checkout@v3
+        - 
+          run: mkdir -p path/to/artifact
+          run: echo hello > path/to/artifact/world.txt
+      - 
+        uses: actions/upload-artifact@v3
+        with:
+          name: my-artifact
+          path: path/to/artifact/world.txt
       - 
         name: Set up JDK 11
         uses: actions/setup-java@v3
@@ -36,6 +44,15 @@ jobs:
       -
         name: Checkout
         uses: actions/checkout@v3
+      - 
+        uses: actions/download-artifact@v3
+        with:
+          name: my-artifact
+          path: path/to/artifact
+      - 
+        name: Display structure of downloaded files
+        run: ls -aR
+        working-directory: path/to/artifact
       -
         # Add support for more platforms with QEMU (optional)
         # https://github.com/docker/setup-qemu-action
@@ -54,13 +71,7 @@ jobs:
       -
         name: Run Script Docker
         run: bash ${GITHUB_WORKSPACE}/docker/build_and_push.bash ${NAME_IMAGE} ${{secrets.PROJECT_ID_GCP}}
-      -
-        name: Deploy GKE
-        run: |-
-          sudo snap install google-cloud-cli --classic
-          gcloud auth activate-service-account docker-container-registry@${{secrets.PROJECT_ID_GCP}}.iam.gserviceaccount.com --key-file=gcp_service.json --project=${{secrets.PROJECT_ID_GCP}}
-          gcloud container clusters get-credentials cluster-1 --region us-central1-c
-          kubectl set image deployment nginx-1 tutum-demo-1-1=gcr.io/swift-smoke-275301/tutum-demo-1:latest
+      
           
 
 
