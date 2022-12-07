@@ -14,6 +14,8 @@ jobs:
       - 
         name: Checkout
         uses: actions/checkout@v3
+      -
+        name: creando carpetas
         run: mkdir -p path/to/artifact
         run: echo hello > path/to/artifact/world.txt
       - 
