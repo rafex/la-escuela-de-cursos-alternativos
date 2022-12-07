@@ -3,12 +3,12 @@ name: Develop
 on:
   push:
     branches: [ "develop" ]
-    paths:
-      - '!sql/**'
+    paths-ignore:
+      - 'sql/**'
   pull_request:
     branches: [ "develop" ]
-    paths:
-      - '!sql/**'
+    paths-ignore:
+      - 'sql/**'
     
 jobs:
   maven:
