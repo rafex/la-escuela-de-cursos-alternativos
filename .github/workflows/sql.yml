@@ -2,11 +2,11 @@ name: Update DataBase
 
 on:
   push:
-    branches: [ "main","release" ]
+    branches: [ "main","release","develop" ]
     paths:
       - 'sql/**'
   pull_request:
-    branches: [ "main","release" ]
+    branches: [ "main","release","develop" ]
     paths:
       - 'sql/**'
 

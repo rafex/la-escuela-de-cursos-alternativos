@@ -3,12 +3,12 @@ name: Release
 on:
   push:
     branches: [ "release" ]
-    paths:
-      - '!sql/**'
+    paths-ignore:
+      - 'sql/**'
   pull_request:
     branches: [ "release" ]
-    paths:
-      - '!sql/**'
+    paths-ignore:
+      - 'sql/**'
     
 jobs:
   maven:
