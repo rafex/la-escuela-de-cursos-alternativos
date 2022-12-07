@@ -78,7 +78,6 @@ jobs:
         run: |-
           gcloud info
           gcloud components install gke-gcloud-auth-plugin
-          gke-gcloud-auth-plugin --version 
           export USE_GKE_GCLOUD_AUTH_PLUGIN=True
           # gcloud config set project ${{secrets.PROJECT_ID_GCP}}
           echo "que pasa"
