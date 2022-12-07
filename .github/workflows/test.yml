@@ -37,7 +37,7 @@ jobs:
           path: artifact/webapp.jar
       - 
         name: Qué paso con el código?
-        run: cd ${GITHUB_WORKSPACE}/alternative-courses && ls -la && find -type f -iname "*.jar"
+        run: cd ${GITHUB_WORKSPACE} && ls -lha && find -type f -iname "*.jar"
   buildx:
     name: Docker build and push
     runs-on: ubuntu-latest
@@ -55,7 +55,7 @@ jobs:
           path: artifact
       - 
         name: Display structure of downloaded files
-        run: ls -aR
+        run: ls -alhR
         working-directory: artifact
       -
         # Add support for more platforms with QEMU (optional)
