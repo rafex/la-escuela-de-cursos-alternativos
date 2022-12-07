@@ -16,14 +16,7 @@ jobs:
         uses: actions/checkout@v3
       -
         name: creando carpetas
-        run: |-
-          mkdir -p path/to/artifact
-          echo hello > path/to/artifact/world.txt
-      - 
-        uses: actions/upload-artifact@v3
-        with:
-          name: my-artifact
-          path: path/to/artifact/world.txt
+        run: mkdir -p artifact
       - 
         name: Set up JDK 11
         uses: actions/setup-java@v3
@@ -32,7 +25,16 @@ jobs:
           distribution: 'temurin'
       - 
         name: Build with Maven Wrapper
-        run: cd ${GITHUB_WORKSPACE}/alternative-courses && chmod +x mvnw && ./mvnw -B package --file pom.xml
+        run: |-
+          cd ${GITHUB_WORKSPACE}/alternative-courses
+          chmod +x mvnw
+          ./mvnw -B package --file pom.xml
+          cp ./alternative-courses-webapp/target/alternative-courses-webapp-1.0-SNAPSHOT.jar ${GITHUB_WORKSPACE}/artifact/webapp.jar
+      - 
+        uses: actions/upload-artifact@v3
+        with:
+          name: my-artifact-jar
+          path: artifact/webapp.jar
       - 
         name: Qué paso con el código?
         run: cd ${GITHUB_WORKSPACE}/alternative-courses && ls -la && find -type f -iname "*.jar"
@@ -49,12 +51,12 @@ jobs:
       - 
         uses: actions/download-artifact@v3
         with:
-          name: my-artifact
-          path: path/to/artifact
+          name: my-artifact-jar
+          path: artifact
       - 
         name: Display structure of downloaded files
         run: ls -aR
-        working-directory: path/to/artifact
+        working-directory: artifact
       -
         # Add support for more platforms with QEMU (optional)
         # https://github.com/docker/setup-qemu-action
