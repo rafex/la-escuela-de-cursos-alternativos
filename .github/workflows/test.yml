@@ -45,12 +45,19 @@ jobs:
       -
         name: Set up Docker Buildx
         uses: docker/setup-buildx-action@v2
+      - 
+        name: create-json
+        id: create-json
+        uses: jsdaniell/create-json@v1.2.1
+        with:
+          name: "gcp_service.json"
+          json: ${{secrets.JSON_CONTAINER_REGISTRY_GCP}}
       -
         name: create json GCP
-        run: echo ${{secrets.JSON_CONTAINER_REGISTRY_GCP}} | tee archivo.txt && cat archivo.txt
+        run: cat gcp_service.json
       -
         name: docker auth
-        run: cat archivo.txt && cat archivo.txt  | docker login -u _json_key --password-stdin https://gcr.io
+        run: cat gcp_service.json | docker login -u _json_key --password-stdin https://gcr.io
       -
         name: docker build
         run: export NAME_IMAGE="tutum-demo:$(date +%s)" && cd ${GITHUB_WORKSPACE}/alternative-courses && docker build . -t $NAME_IMAGE && docker images      
