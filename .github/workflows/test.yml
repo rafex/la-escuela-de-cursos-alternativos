@@ -56,16 +56,13 @@ jobs:
         run: cat gcp_service.json | docker login -u _json_key --password-stdin https://gcr.io
       -
         name: creando variables
-        run: export NAME_AND_TAG_IMAGE=$NAME_IMAGE:$TAG_IMAGE && export TAG_IMAGE=$(date +%s) && echo $NAME_AND_TAG_IMAGE
-      -
-        name: validando variable
-        run: echo $NAME_AND_TAG_IMAGE
+        run: export TAG_IMAGE=$(date +%s) && export NAME_AND_TAG_IMAGE=$NAME_IMAGE:$TAG_IMAGE && echo $NAME_AND_TAG_IMAGE
       -
         name: docker build
-        run: echo $NAME_AND_TAG_IMAGE && cd ${GITHUB_WORKSPACE}/alternative-courses && docker build . -t $NAME_AND_TAG_IMAGE && docker images
+        run: export TAG_IMAGE=$(date +%s) && export NAME_AND_TAG_IMAGE=$NAME_IMAGE:$TAG_IMAGE && echo $NAME_AND_TAG_IMAGE && cd ${GITHUB_WORKSPACE}/alternative-courses && docker build . -t $NAME_AND_TAG_IMAGE && docker images
       -
         name: docker tag
-        run: docker tag $NAME_AND_TAG_IMAGE gcr.io/${{secrets.PROJECT_ID_GCP}}/$NAME_IMAGE
+        run: export TAG_IMAGE=$(date +%s) && export NAME_AND_TAG_IMAGE=$NAME_IMAGE:$TAG_IMAGE && echo $NAME_AND_TAG_IMAGE && docker tag $NAME_AND_TAG_IMAGE gcr.io/${{secrets.PROJECT_ID_GCP}}/$NAME_IMAGE
       -
         name: docker push
         run: docker push gcr.io/${{secrets.PROJECT_ID_GCP}}/$NAME_IMAGE
