@@ -1,0 +1,33 @@
+name: Update DataBase
+
+on:
+  push:
+    branches: [ "main","release","develop" ]
+    paths:
+      - 'sql/**'
+  pull_request:
+    branches: [ "main","release","develop" ]
+    paths:
+      - 'sql/**'
+
+jobs:
+  flyway:
+    name: Flyway
+    runs-on: ubuntu-latest
+    env:
+      USER_DB: ${{ secrets.USER_DB }}
+      PASSWORD_DB: ${{ secrets.PASSWORD_DB }}
+    steps:
+      - 
+        name: Checkout
+        uses: actions/checkout@v3
+      -
+        name: Download and install Flyway
+        run: |-
+          wget -qO- https://repo1.maven.org/maven2/org/flywaydb/flyway-commandline/9.8.1/flyway-commandline-9.8.1-linux-x64.tar.gz | tar xvz && sudo ln -s `pwd`/flyway-9.8.1/flyway /usr/local/bin 
+          tree .
+          # cd flyway-9.8.1/lib 
+          # wget -qO- https://jdbc.postgresql.org/download/postgresql-42.5.1.jar
+          # cd ${GITHUB_WORKSPACE}
+          # bash ${GITHUB_WORKSPACE}/sql/myflyway.sh info prod
+
