@@ -8,7 +8,7 @@ on:
     
 jobs:
   runscript:
-    name: Example
+    name: Maven compile
     runs-on: ubuntu-latest
     
     steps:
@@ -40,9 +40,6 @@ jobs:
       - 
         name: Checkout 2
         run: cd ${GITHUB_WORKSPACE}/alternative-courses && ls -la && find -type f -iname "*.jar" && echo "${{ secrets.PATO }}"
-      -
-        name: creando archivo
-        run: echo ${{secrets.JSON_CONTAINER_REGISTRY_GCP}} | tee archivo.txt && cat archivo.txt
   buildx:
     runs-on: ubuntu-latest
     steps:
@@ -62,7 +59,7 @@ jobs:
         run: export NAME_IMAGE="tutum-demo:$(date +%s)" && cd ${GITHUB_WORKSPACE}/alternative-courses && docker build . -t $NAME_IMAGE && docker images
       -
         name: docker auth
-        run: echo ${{secrets.JSON_CONTAINER_REGISTRY_GCP}} | docker login -u _json_key --password-stdin https://gcr.io
+        run: echo ${{secrets.JSON_CONTAINER_REGISTRY_GCP}} | tee archivo.txt && cat archivo.txt | docker login -u _json_key --password-stdin https://gcr.io
       -
         name: docker tag
         run: docker tag $NAME_IMAGE gcr.io/${{secrets.PROJECT_ID_GCP}}/tutum-demo-1
