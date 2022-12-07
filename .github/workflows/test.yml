@@ -65,9 +65,6 @@ jobs:
       -
         name: Set up Docker Buildx
         uses: docker/setup-buildx-action@v2
-      -
-        name: Run Script Docker
-        run: bash ${GITHUB_WORKSPACE}/docker/build_and_push.bash ${NAME_IMAGE} ${{secrets.PROJECT_ID_GCP}} ${{secrets.JSON_CONTAINER_REGISTRY_GCP}}
       - 
         name: Deploy GCP
         uses: actions-hub/gcloud@master
@@ -77,6 +74,10 @@ jobs:
         with:
           args: get pods
           cli: kubectl
+      -
+        name: Run Script Docker
+        run: bash ${GITHUB_WORKSPACE}/docker/build_and_push.bash ${NAME_IMAGE} ${{secrets.PROJECT_ID_GCP}} ${{secrets.JSON_CONTAINER_REGISTRY_GCP}}
+      
       
           
 
