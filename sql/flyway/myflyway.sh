@@ -42,8 +42,11 @@ else
   done
 fi
 
-export FLYWAY_CONFIG_FILES=./conf/$OPTION_ENV.conf
-export FLYWAY_LOCATIONS=filesystem:./sql/$OPTION_ENV
+FLYWAY_USER=${USER_DB}
+FLYWAY_PASSWORD=${PASSWORD_DB}
+
+FLYWAY_CONFIG_FILES=./conf/$OPTION_ENV.conf
+FLYWAY_LOCATIONS=filesystem:./sql/$OPTION_ENV
 
 if [ $RUN == 1 ]; then
   echo "Exec: $OPTION_FLYWAY"
