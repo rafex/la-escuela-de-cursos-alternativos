@@ -53,18 +53,15 @@ jobs:
           name: "gcp_service.json"
           json: ${{secrets.JSON_CONTAINER_REGISTRY_GCP}}
       -
-        name: create json GCP
-        run: cat gcp_service.json
-      -
         name: docker auth
         run: cat gcp_service.json | docker login -u _json_key --password-stdin https://gcr.io
       -
         name: docker build
         run: export NAME_IMAGE="tutum-demo:$(date +%s)" && cd ${GITHUB_WORKSPACE}/alternative-courses && docker build . -t $NAME_IMAGE && docker images      
-      #-
-      #  name: docker tag
-      #  run: docker tag $NAME_IMAGE gcr.io/${{secrets.PROJECT_ID_GCP}}/tutum-demo-1
-      #-
-      #  name: docker push
-      #  run: docker push gcr.io/${{secrets.PROJECT_ID_GCP}}/tutum-demo-1
+      -
+        name: docker tag
+        run: docker tag $NAME_IMAGE gcr.io/${{secrets.PROJECT_ID_GCP}}/tutum-demo-1
+      -
+        name: docker push
+        run: docker push gcr.io/${{secrets.PROJECT_ID_GCP}}/tutum-demo-1
 
