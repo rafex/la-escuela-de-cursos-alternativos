@@ -1,4 +1,4 @@
-package mx.rafex.tutum.school.model;
+package mx.rafex.tutum.school.webapp.tmp;
 
 public class Subject {
 

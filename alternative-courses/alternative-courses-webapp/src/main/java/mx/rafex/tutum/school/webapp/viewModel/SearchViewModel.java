@@ -5,9 +5,9 @@ import java.util.List;
 import org.zkoss.zk.ui.annotation.Command;
 import org.zkoss.zul.ListModelList;
 
-import mx.rafex.tutum.school.model.Car;
-import mx.rafex.tutum.school.service.CarService;
-import mx.rafex.tutum.school.service.impl.CarServiceImpl;
+import mx.rafex.tutum.school.webapp.tmp.Car;
+import mx.rafex.tutum.school.webapp.tmp.CarService;
+import mx.rafex.tutum.school.webapp.tmp.CarServiceImpl;
 
 /**
  * Suggest using ZK {@link org.zkoss.zul.ListModel} implementation as a

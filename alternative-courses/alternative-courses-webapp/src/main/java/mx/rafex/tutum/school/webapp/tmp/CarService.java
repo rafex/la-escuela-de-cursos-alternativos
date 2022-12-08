@@ -1,8 +1,6 @@
-package mx.rafex.tutum.school.service;
+package mx.rafex.tutum.school.webapp.tmp;
 
 import java.util.List;
-
-import mx.rafex.tutum.school.model.Car;
 
 public interface CarService {
 
