@@ -7,12 +7,14 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 
-public interface StudentRest {
+@RequestMapping("/student")
+public interface StudentRest extends Rest {
 
     Logger LOG = Logger.getLogger(StudentRest.class.getName());
 
-    @RequestMapping(method = { RequestMethod.GET })
+    @RequestMapping(method = { RequestMethod.GET }, produces = {
+            APPLICATION_JSON_UTF8 })
     ResponseEntity<?> list(
-            @RequestParam(required = true, name = "startDate") String startDate);
+            @RequestParam(required = false, name = "idUsuario") String idStudent);
 
 }
