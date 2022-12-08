@@ -31,7 +31,7 @@ jobs:
           chmod +x mvnw
           ./mvnw -B package --file pom.xml
           cp ./alternative-courses-webapp/target/alternative-courses-webapp-1.0-SNAPSHOT.jar ${GITHUB_WORKSPACE}/artifact/webapp.jar
-          cp ./alternative-courses/alternative-courses-rest/target/alternative-courses-rest-1.0-SNAPSHOT.jar ${GITHUB_WORKSPACE}/artifact/webservices.jar
+          cp ./alternative-courses-rest/target/alternative-courses-rest-1.0-SNAPSHOT.jar ${GITHUB_WORKSPACE}/artifact/webservices.jar
       - 
         uses: actions/upload-artifact@v3
         with:
