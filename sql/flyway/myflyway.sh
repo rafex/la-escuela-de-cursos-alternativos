@@ -42,6 +42,10 @@ else
   done
 fi
 
+echo "validando variables"
+echo "user: ${USER_DB}"
+echo "pass: ${PASSWORD_DB}"
+
 FLYWAY_URL="jdbc:postgresql://34.170.151.67:5432/escuela"
 FLYWAY_USER="${USER_DB}"
 FLYWAY_PASSWORD="${PASSWORD_DB}"
