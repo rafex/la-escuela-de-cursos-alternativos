@@ -14,8 +14,9 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
 import mx.rafex.tutum.school.model.rest.ResponseHandler;
+import mx.rafex.tutum.school.rest.util.IntegerUtils;
 
-public interface Rest {
+public interface Rest extends IntegerUtils {
 
     Logger LOGGER = Logger.getLogger(Rest.class.getName());
 
