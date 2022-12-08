@@ -4,9 +4,9 @@ import java.util.logging.Logger;
 
 import org.zkoss.zk.ui.annotation.Command;
 
-import mx.rafex.tutum.school.service.SubjectService;
-import mx.rafex.tutum.school.service.mock.MockSubjectServiceImpl;
 import mx.rafex.tutum.school.webapp.form.SubjectForm;
+import mx.rafex.tutum.school.webapp.tmp.MockSubjectServiceImpl;
+import mx.rafex.tutum.school.webapp.tmp.SubjectService;
 
 public class MarkViewModel extends SubjectForm {
 

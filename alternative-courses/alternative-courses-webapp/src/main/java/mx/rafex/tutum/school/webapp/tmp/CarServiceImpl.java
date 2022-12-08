@@ -1,10 +1,7 @@
-package mx.rafex.tutum.school.service.impl;
+package mx.rafex.tutum.school.webapp.tmp;
 
 import java.util.LinkedList;
 import java.util.List;
-
-import mx.rafex.tutum.school.model.Car;
-import mx.rafex.tutum.school.service.CarService;
 
 public class CarServiceImpl implements CarService {
 

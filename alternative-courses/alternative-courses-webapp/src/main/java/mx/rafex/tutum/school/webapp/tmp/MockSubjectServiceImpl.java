@@ -1,10 +1,7 @@
-package mx.rafex.tutum.school.service.mock;
+package mx.rafex.tutum.school.webapp.tmp;
 
 import java.util.LinkedList;
 import java.util.List;
-
-import mx.rafex.tutum.school.model.Subject;
-import mx.rafex.tutum.school.service.SubjectService;
 
 public class MockSubjectServiceImpl implements SubjectService {
 
