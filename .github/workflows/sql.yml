@@ -12,11 +12,11 @@ on:
   push:
     branches: [ "main","release","develop" ]
     paths:
-      - 'sql/**'      
+      - 'sql/flyway/sql/*.sql'
   pull_request:
     branches: [ "main","release","develop" ]
     paths:
-      - 'sql/**'
+      - 'sql/flyway/sql/*.sql'
 
 jobs:
   flyway:
