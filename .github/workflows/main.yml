@@ -1,11 +1,6 @@
 name: Main
 
 on:
-  push:
-    branches: [ "main" ]
-    paths:
-      - 'alternative-courses/**'
-      - 'docker/**'
   pull_request:
     branches: [ "main" ]
     paths:
