@@ -26,7 +26,6 @@ jobs:
       USER_DB: ${{ secrets.USER_DB }}
       PASSWORD_DB: ${{ secrets.PASSWORD_DB }}
       SCHEMA_DB: public
-      TABLE_DB: escuela
     steps:
       - 
         name: Checkout

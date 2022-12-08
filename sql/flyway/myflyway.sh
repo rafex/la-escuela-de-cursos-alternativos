@@ -52,7 +52,7 @@ export FLYWAY_PASSWORD="${PASSWORD_DB}"
 export FLYWAY_DRIVER=org.postgresql.Driver
 export FLYWAY_CONNECT_RETRIES=3
 export FLYWAY_SCHEMAS=${SCHEMA_DB}
-export FLYWAY_TABLE=${TABLE_DB}
+#export FLYWAY_TABLE=${TABLE_DB}
 
 #export FLYWAY_CONFIG_FILES=./conf/$OPTION_ENV.conf
 export FLYWAY_LOCATIONS=filesystem:./sql/$OPTION_ENV
