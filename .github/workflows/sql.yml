@@ -40,4 +40,6 @@ jobs:
           cd ${GITHUB_WORKSPACE}/sql/flyway
           ls -lah
           bash myflyway.sh info prod
+          bash myflyway.sh migrate prod
+          bash myflyway.sh info prod
 
