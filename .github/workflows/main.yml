@@ -1,11 +1,6 @@
 name: Main
 
 on:
-  push:
-    branches: [ "main" ]
-    paths:
-      - 'alternative-courses/**'
-      - 'docker/**'
   pull_request:
     branches: [ "main" ]
     paths:
@@ -36,11 +31,12 @@ jobs:
           chmod +x mvnw
           ./mvnw -B package --file pom.xml
           cp ./alternative-courses-webapp/target/alternative-courses-webapp-1.0-SNAPSHOT.jar ${GITHUB_WORKSPACE}/artifact/webapp.jar
+          cp ./alternative-courses/alternative-courses-rest/target/alternative-courses-rest-1.0-SNAPSHOT.jar ${GITHUB_WORKSPACE}/artifact/webservices.jar
       - 
         uses: actions/upload-artifact@v3
         with:
           name: my-artifact-jar
-          path: artifact/webapp.jar
+          path: artifact/
       - 
         name: Qué paso con el código?
         run: cd ${GITHUB_WORKSPACE} && ls -lha && find -type f -iname "*.jar"
