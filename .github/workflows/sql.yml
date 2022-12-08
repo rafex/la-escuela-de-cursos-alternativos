@@ -10,13 +10,13 @@ on:
       tags:
         description: 'Test scenario tags' 
   push:
-    branches: [ "main","release","develop" ]
+    branches: [ "main" ]
     paths:
-      - 'sql/flyway/sql/*.sql'
+      - 'sql/flyway/sql/**.sql'
   pull_request:
-    branches: [ "main","release","develop" ]
+    branches: [ "main" ]
     paths:
-      - 'sql/flyway/sql/*.sql'
+      - 'sql/flyway/sql/**.sql'
 
 jobs:
   flyway:
