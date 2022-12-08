@@ -42,7 +42,17 @@ else
   done
 fi
 
-export FLYWAY_CONFIG_FILES=./conf/$OPTION_ENV.conf
+echo "validando variables"
+echo "user: ${USER_DB}"
+echo "pass: ${PASSWORD_DB}"
+
+export FLYWAY_URL="jdbc:postgresql://34.170.151.67:5432/escuela"
+export FLYWAY_USER="${USER_DB}"
+export FLYWAY_PASSWORD="${PASSWORD_DB}"
+export FLYWAY_DRIVER=org.postgresql.Driver
+export FLYWAY_CONNECT_RETRIES=3
+
+#export FLYWAY_CONFIG_FILES=./conf/$OPTION_ENV.conf
 export FLYWAY_LOCATIONS=filesystem:./sql/$OPTION_ENV
 
 if [ $RUN == 1 ]; then
