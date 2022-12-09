@@ -44,10 +44,12 @@ public interface Rest extends IntegerUtils {
 
         LOGGER.info(message);
 
+        var time = System.currentTimeMillis();
+
         String body = null;
         switch (RequestMethod.valueOf(method)) {
         case GET:
-            body = WORKS;
+            body = WORKS + time;
             break;
         case POST:
         case PUT:
@@ -55,7 +57,7 @@ public interface Rest extends IntegerUtils {
                     .collect(Collectors.joining(System.lineSeparator()));
             break;
         default:
-            body = WORKS;
+            body = WORKS + time;
 
         }
 
