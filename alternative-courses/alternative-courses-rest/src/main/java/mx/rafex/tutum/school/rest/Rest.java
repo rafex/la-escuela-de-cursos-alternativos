@@ -40,9 +40,13 @@ public interface Rest extends IntegerUtils {
             throws IOException {
 
         final var method = request.getMethod();
-        final var message = "It works by the verb " + method;
+        final var message = new StringBuilder();
+        message.append("It works by the verb ");
+        message.append(method);
+        message.append(" URL: ");
+        message.append(request.getRequestURI());
 
-        LOGGER.info(message);
+        LOGGER.info(message.toString());
 
         var time = System.currentTimeMillis();
 
@@ -61,7 +65,8 @@ public interface Rest extends IntegerUtils {
 
         }
 
-        return ResponseHandler.response(message, HttpStatus.OK, body);
+        return ResponseHandler.response(message.toString(), HttpStatus.OK,
+                body);
     }
 
 }

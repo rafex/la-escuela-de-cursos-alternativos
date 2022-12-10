@@ -4,38 +4,49 @@
 	xsi:schemaLocation="
       http://www.zkoss.org/2005/zul https://www.zkoss.org/2005/zul/zul.xsd
       http://www.w3.org/1999/xhtml https://www.w3.org/2002/08/xhtml/xhtml1-strict.xsd">
-	<window title="Search" width="600px" border="normal"
-		onOK="@command('search')"
-		viewModel="@id('vm') @init('mx.rafex.tutum.school.webapp.viewModel.SearchViewModel')"
+	<window title="${labels.list.title}" width="600px"
+		border="normal" onOK="@command('search')"
+		viewModel="@id('vm') @init('mx.rafex.tutum.school.webapp.viewModel.StudentListViewModel')"
 		style="margin:auto">
 		Keyword:
 		<textbox value="@save(vm.keyword)" />
 		<button label="Search" iconSclass="z-icon-search"
 			onClick="@command('search')" style="margin: 0 0 5px 5px" />
-		<listbox model="@init(vm.carList)"
+		<listbox model="@init(vm.list)"
 			emptyMessage="No car found in the result" rows="5"
-			selectedItem="@save(vm.selectedCar)">
+			selectedItem="@save(vm.selected)">
 			<listhead sizable="true">
-				<listheader label="Model" />
-				<listheader label="Make" />
-				<listheader label="Price" width="20%" />
+				<listheader label="ID" width="10%" />
+				<listheader label="NOMBRE" />
+				<listheader label="ACTIVO" width="20%" />
 			</listhead>
 			<template name="model">
 				<listitem>
-					<listcell label="@init(each.model)"></listcell>
-					<listcell label="@init(each.make)"></listcell>
-					<listcell label="@init(('$'+=each.price))" />
+					<listcell label="@init(each.id)"></listcell>
+					<listcell label="@init(each.fullName)"></listcell>
+					<listcell label="@init(each.active)"></listcell>
 				</listitem>
 			</template>
 		</listbox>
 		<hlayout style="margin-top:20px" width="100%">
-			<image width="250px" src="@load(vm.selectedCar.preview)" />
 			<vlayout hflex="1">
-				<label value="@load(vm.selectedCar.model)" />
-				<label value="@load(vm.selectedCar.make)" />
-				<label value="@load(vm.selectedCar.price)" />
-				<label value="@load(vm.selectedCar.description)" />
+				<label value="@load(vm.selected.id)" />
+				<label value="@load(vm.selected.fullName)" />
+				<label value="@load(vm.selected.active)" />
 			</vlayout>
 		</hlayout>
+		<!-- <separator />
+
+				Simple MVVM-Based Sub Navigation:
+				<div>
+					<button label="sub page 1"
+						onClick="@command('navigate', page='page1')" />
+					<button label="sub page 2"
+						onClick="@command('navigate', page='page2')" />
+				</div>
+				in ZK CE version you can use the include component
+				<include pageModel="@load(vm.currentPage)" src="@load(vm.currentPage.uri)"/> -->
+				<!-- <apply templateURI="@load(vm.currentPage.uri)"
+					pageModel="@load(vm.currentPage)" /> -->
 	</window>
 </zk>

@@ -24,11 +24,11 @@ public class ScoreEntity implements Serializable {
     @Column(name = "id_t_calificaciones")
     private int id;
 
-    @Column(name = "id_t_materias")
-    private int id_t_materias;
+    @Column(name = "id_t_materias", insertable = false, updatable = false)
+    private int idMaterias;
 
-    @Column(name = "id_t_materias")
-    private int id_t_usuarios;
+    @Column(name = "id_t_materias", insertable = false, updatable = false)
+    private int idUsuarios;
 
     @Column(name = "fecha_registro")
     private LocalDateTime registrationDate;
