@@ -6,8 +6,8 @@
       http://www.w3.org/1999/xhtml https://www.w3.org/2002/08/xhtml/xhtml1-strict.xsd">
 	
 
-	<window title="Form 3" width="600px" border="normal"
-		viewModel="@id('vm') @init('mx.rafex.tutum.school.webapp.viewModel.MarkViewModel')"
+	<window title="${labels.form.title}" width="600px" border="normal"
+		viewModel="@id('vm') @init('mx.rafex.tutum.school.webapp.viewModel.GradingFormViewModel')"
 		validationMessages="@id('vmsgs')"
 		form="@id('fx') @load(vm.subject) @save(vm.subject, before='submit')"
 		style="margin:auto">
@@ -15,8 +15,8 @@
 		<grid model="@init(vm.subjectList)"
 			emptyMessage="Nothing in Inbox.">
 			<columns>
-				<column label="Materia" width="120px" />
-				<column label="Calificación" />
+				<column label="${labels.form.subject}" width="120px" />
+				<column label="${labels.form.grade}" />
 			</columns>
 			<template name="model">
 				<row>

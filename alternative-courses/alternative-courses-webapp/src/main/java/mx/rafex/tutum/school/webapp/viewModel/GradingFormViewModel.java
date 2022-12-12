@@ -11,10 +11,10 @@ import mx.rafex.tutum.school.webapp.form.SubjectForm;
 import mx.rafex.tutum.school.webapp.tmp.MockSubjectServiceImpl;
 import mx.rafex.tutum.school.webapp.tmp.SubjectService;
 
-public class MarkViewModel extends SubjectForm {
+public class GradingFormViewModel extends SubjectForm {
 
     private final static Logger LOG = Logger
-            .getLogger(MarkViewModel.class.getName());
+            .getLogger(GradingFormViewModel.class.getName());
 
     private SubjectService service = new MockSubjectServiceImpl();
 
@@ -33,7 +33,7 @@ public class MarkViewModel extends SubjectForm {
         LOG.info(String.format("Argumento [arg1] = %s", arg));
     }
 
-    public MarkViewModel() {
+    public GradingFormViewModel() {
         super();
         getSubjectList().addAll(service.findByStudent(1));
     }

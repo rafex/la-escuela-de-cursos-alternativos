@@ -1,13 +1,9 @@
 package mx.rafex.tutum.school.webapp.viewModel;
 
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
 import java.util.logging.Logger;
 
 import org.zkoss.bind.annotation.BindingParam;
-import org.zkoss.bind.annotation.Init;
-import org.zkoss.bind.annotation.NotifyChange;
 import org.zkoss.zk.ui.Executions;
 import org.zkoss.zk.ui.annotation.Command;
 import org.zkoss.zk.ui.select.annotation.VariableResolver;
@@ -29,17 +25,6 @@ public class StudentListViewModel {
 
     @WireVariable("studentServiceImpl")
     private StudentService service;
-
-    Map<String, PageModel<String>> pages = new HashMap<>();
-    private PageModel<String> currentPage;
-
-    @Init
-    public void init() {
-        pages.put("page1", new PageModel<>("~./zul/mvvm-page1.zul",
-                "some data for page 1 (could be a more complex object)"));
-        pages.put("page2", new PageModel<>("~./zul/mvvm-page2.zul",
-                "different data for page 2"));
-    }
 
     @Command
     public void search() {
@@ -75,16 +60,6 @@ public class StudentListViewModel {
      */
     public void setSelected(Student selected) {
         this.selected = selected;
-    }
-
-    @Command
-    @NotifyChange("currentPage")
-    public void navigate(@BindingParam("page") String page) {
-        this.currentPage = pages.get(page);
-    }
-
-    public PageModel getCurrentPage() {
-        return currentPage;
     }
 
     @Command
