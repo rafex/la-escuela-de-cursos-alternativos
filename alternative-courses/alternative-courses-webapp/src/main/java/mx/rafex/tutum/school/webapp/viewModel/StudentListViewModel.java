@@ -13,7 +13,6 @@ import org.zkoss.zk.ui.annotation.Command;
 import org.zkoss.zk.ui.select.annotation.VariableResolver;
 import org.zkoss.zk.ui.select.annotation.WireVariable;
 import org.zkoss.zul.ListModelList;
-import org.zkoss.zul.Window;
 
 import mx.rafex.tutum.school.model.vo.Student;
 import mx.rafex.tutum.school.webapp.service.StudentService;
@@ -89,12 +88,14 @@ public class StudentListViewModel {
     }
 
     @Command
-    public void showModal() {
-        LOG.info("click show modal");
+    public void getForm(@BindingParam("id") final String id) {
+        LOG.info("Redirec!!!");
         // create a window programmatically and use it as a modal dialog.
-        Window window = (Window) Executions
-                .createComponents("~./zul/window_dialog.zul", null, null);
-        window.doModal();
+        // Executions.sendRedirect("~./zul/form.zul?arg1=hola");
+        Executions.sendRedirect("form?arg1=" + id + "&arg2=dos");
+//        Window window = (Window) Executions
+//                .createComponents("~./zul/window_dialog.zul", null, null);
+//        window.doModal();
     }
 
 }

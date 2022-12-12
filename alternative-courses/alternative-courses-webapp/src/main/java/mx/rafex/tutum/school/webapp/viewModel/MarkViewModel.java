@@ -1,7 +1,10 @@
 package mx.rafex.tutum.school.webapp.viewModel;
 
+import java.util.Map;
 import java.util.logging.Logger;
 
+import org.zkoss.bind.annotation.Init;
+import org.zkoss.zk.ui.Executions;
 import org.zkoss.zk.ui.annotation.Command;
 
 import mx.rafex.tutum.school.webapp.form.SubjectForm;
@@ -14,6 +17,21 @@ public class MarkViewModel extends SubjectForm {
             .getLogger(MarkViewModel.class.getName());
 
     private SubjectService service = new MockSubjectServiceImpl();
+
+    @Init
+    public void init() {
+
+        Map<String, String[]> parameterMap = Executions.getCurrent()
+                .getParameterMap();
+
+        parameterMap.forEach((k, v) -> {
+
+            LOG.info(String.format("Parametro [ %s = %s ]", k, v.toString()));
+        });
+
+        String arg = Executions.getCurrent().getParameter("arg1");
+        LOG.info(String.format("Argumento [arg1] = %s", arg));
+    }
 
     public MarkViewModel() {
         super();

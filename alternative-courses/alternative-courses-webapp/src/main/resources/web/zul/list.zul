@@ -17,14 +17,18 @@
 			selectedItem="@save(vm.selected)">
 			<listhead sizable="true">
 				<listheader label="ID" width="10%" />
-				<listheader label="NOMBRE" />
-				<listheader label="ACTIVO" width="20%" />
+				<listheader label="${labels.list.colum2}" />
+				<listheader label="${labels.list.colum3}" width="20%" />
+				<listheader label="" width="20%" />
 			</listhead>
 			<template name="model">
 				<listitem>
 					<listcell label="@init(each.id)"></listcell>
 					<listcell label="@init(each.fullName)"></listcell>
 					<listcell label="@init(each.active)"></listcell>
+					<listcell>
+						<button id="orderBtn" label="${labels.list.button}" onClick="@command('getForm',id=each.id))"/>
+					</listcell>
 				</listitem>
 			</template>
 		</listbox>
@@ -35,18 +39,12 @@
 				<label value="@load(vm.selected.active)" />
 			</vlayout>
 		</hlayout>
-		<!-- <separator />
-
-				Simple MVVM-Based Sub Navigation:
-				<div>
-					<button label="sub page 1"
-						onClick="@command('navigate', page='page1')" />
-					<button label="sub page 2"
-						onClick="@command('navigate', page='page2')" />
-				</div>
-				in ZK CE version you can use the include component
-				<include pageModel="@load(vm.currentPage)" src="@load(vm.currentPage.uri)"/> -->
-				<!-- <apply templateURI="@load(vm.currentPage.uri)"
-					pageModel="@load(vm.currentPage)" /> -->
+		<!-- <separator /> Simple MVVM-Based Sub Navigation: <div> <button label="sub 
+			page 1" onClick="@command('navigate', page='page1')" /> <button label="sub 
+			page 2" onClick="@command('navigate', page='page2')" /> </div> in ZK CE version 
+			you can use the include component <include pageModel="@load(vm.currentPage)" 
+			src="@load(vm.currentPage.uri)"/> -->
+		<!-- <apply templateURI="@load(vm.currentPage.uri)" pageModel="@load(vm.currentPage)" 
+			/> -->
 	</window>
 </zk>
