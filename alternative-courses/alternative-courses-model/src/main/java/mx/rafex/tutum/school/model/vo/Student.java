@@ -2,7 +2,10 @@ package mx.rafex.tutum.school.model.vo;
 
 import java.io.Serializable;
 
+import lombok.AccessLevel;
 import lombok.Data;
+import lombok.Getter;
+import lombok.Setter;
 
 @Data
 public class Student implements Serializable {
@@ -19,8 +22,26 @@ public class Student implements Serializable {
 
     private boolean active;
 
-    public String fullName() {
-        return String.format("%s %s %s", name, lastname, surname);
+    @Getter(AccessLevel.NONE)
+    @Setter(AccessLevel.NONE)
+    private String fullName;
+
+    public Student() {
+
+    }
+
+    public Student(int id, String name, String lastname, String surname,
+            boolean active) {
+        super();
+        this.id = id;
+        this.name = name;
+        this.lastname = lastname;
+        this.surname = surname;
+        this.active = active;
+    }
+
+    public String getFullName() {
+        return fullName = String.format("%s %s %s", name, lastname, surname);
     }
 
 }

@@ -40,14 +40,20 @@ public interface Rest extends IntegerUtils {
             throws IOException {
 
         final var method = request.getMethod();
-        final var message = "It works by the verb " + method;
+        final var message = new StringBuilder();
+        message.append("It works by the verb ");
+        message.append(method);
+        message.append(" URL: ");
+        message.append(request.getRequestURI());
 
-        LOGGER.info(message);
+        LOGGER.info(message.toString());
+
+        var time = System.currentTimeMillis();
 
         String body = null;
         switch (RequestMethod.valueOf(method)) {
         case GET:
-            body = WORKS;
+            body = WORKS + time;
             break;
         case POST:
         case PUT:
@@ -55,11 +61,12 @@ public interface Rest extends IntegerUtils {
                     .collect(Collectors.joining(System.lineSeparator()));
             break;
         default:
-            body = WORKS;
+            body = WORKS + time;
 
         }
 
-        return ResponseHandler.response(message, HttpStatus.OK, body);
+        return ResponseHandler.response(message.toString(), HttpStatus.OK,
+                body);
     }
 
 }
