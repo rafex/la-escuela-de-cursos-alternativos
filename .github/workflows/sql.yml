@@ -9,10 +9,6 @@ on:
         default: 'warning'
       tags:
         description: 'Test scenario tags' 
-  push:
-    branches: [ "main" ]
-    paths:
-      - 'sql/flyway/sql/**.sql'
   pull_request:
     branches: [ "main" ]
     paths:
