@@ -11,9 +11,10 @@ public class EnrollRequestRest implements Serializable {
 
     private static final long serialVersionUID = -3825514580544975440L;
 
-    @JsonProperty("idUsuario")
+    @JsonProperty(value = "idUsuario", required = true)
     private int idStudent;
-    @JsonProperty("idMateria")
+
+    @JsonProperty(value = "idMateria", required = true)
     private int idSubject;
 
 }

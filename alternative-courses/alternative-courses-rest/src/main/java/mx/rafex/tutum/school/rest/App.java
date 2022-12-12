@@ -8,8 +8,8 @@ import org.springframework.data.jpa.repository.config.EnableJpaRepositories;
 
 @ServletComponentScan
 @SpringBootApplication(scanBasePackages = { "mx.rafex.tutum.school.rest",
-        "mx.rafex.tutum.school.service" })
-@EnableJpaRepositories("mx.rafex.tutum.school.repository")
+        "mx.rafex.tutum.school.service", "mx.rafex.tutum.school.dao" })
+@EnableJpaRepositories({ "mx.rafex.tutum.school.repository" })
 @EntityScan("mx.rafex.tutum.school.model.entity")
 public class App {
 

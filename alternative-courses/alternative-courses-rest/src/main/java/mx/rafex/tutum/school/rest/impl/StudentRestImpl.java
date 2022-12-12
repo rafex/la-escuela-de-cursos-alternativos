@@ -29,7 +29,8 @@ public class StudentRestImpl implements StudentRest {
 
         LOG.info("Dentro");
 
-        return ResponseHandler.response();
+        return ResponseHandler.response(studentService.enrollSubject(
+                requestRest.getIdStudent(), requestRest.getIdSubject()));
     }
 
 }

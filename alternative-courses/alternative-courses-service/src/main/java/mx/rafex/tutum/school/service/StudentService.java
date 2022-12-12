@@ -6,6 +6,8 @@ import mx.rafex.tutum.school.model.vo.Student;
 
 public interface StudentService {
 
-    List<Student> list(Integer id);
+    List<Student> list(int id);
+
+    boolean enrollSubject(int idStudent, int idSubject);
 
 }
