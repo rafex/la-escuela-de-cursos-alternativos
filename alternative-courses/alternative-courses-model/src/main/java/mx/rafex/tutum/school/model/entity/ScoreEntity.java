@@ -10,14 +10,20 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
 
+import lombok.AllArgsConstructor;
 import lombok.Data;
 
 @Entity
 @Table(name = "t_calificaciones")
 @Data
+@AllArgsConstructor
 public class ScoreEntity implements Serializable {
 
     private static final long serialVersionUID = 1689253546779793416L;
+
+    public ScoreEntity() {
+        registrationDate = LocalDateTime.now();
+    }
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -25,15 +31,15 @@ public class ScoreEntity implements Serializable {
     private int id;
 
     @Column(name = "id_t_materias", insertable = false, updatable = false)
-    private int idMaterias;
+    private int subject;
 
     @Column(name = "id_t_materias", insertable = false, updatable = false)
-    private int idUsuarios;
+    private int student;
 
     @Column(name = "fecha_registro")
     private LocalDateTime registrationDate;
 
     @Column(name = "calificacion")
-    private float score;
+    private double score;
 
 }

@@ -7,6 +7,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import mx.rafex.tutum.school.model.rest.EnrollRequestRest;
 import mx.rafex.tutum.school.model.rest.ResponseHandler;
+import mx.rafex.tutum.school.model.rest.ScoreRequestRest;
 import mx.rafex.tutum.school.rest.StudentRest;
 import mx.rafex.tutum.school.service.StudentService;
 
@@ -25,10 +26,10 @@ public class StudentRestImpl implements StudentRest {
     }
 
     @Override
-    public ResponseEntity<?> enrollSubject(
+    public ResponseEntity<?> enrollSubject(final int idStudent,
             final EnrollRequestRest requestRest) {
 
-        if (studentService.enrollSubject(requestRest.getIdStudent(),
+        if (studentService.enrollSubject(idStudent,
                 requestRest.getIdSubject())) {
             return ResponseHandler.response();
         }
@@ -37,9 +38,20 @@ public class StudentRestImpl implements StudentRest {
     }
 
     @Override
-    public ResponseEntity<?> getSubjects(String idStudent) {
-        return ResponseHandler
-                .response(studentService.getSubjects(convert(idStudent)));
+    public ResponseEntity<?> getSubjects(final int idStudent) {
+        return ResponseHandler.response(studentService.getSubjects(idStudent));
+    }
+
+    @Override
+    public ResponseEntity<?> saveScore(final int idStudent, final int idSubject,
+            final ScoreRequestRest requestRest) {
+
+        if (studentService.saveScore(idStudent, idSubject,
+                requestRest.getScore())) {
+            return ResponseHandler.response();
+        }
+
+        return ResponseHandler.response(HttpStatus.INTERNAL_SERVER_ERROR);
     }
 
 }
