@@ -37,7 +37,9 @@ public class GradingFormViewModel extends SubjectForm {
         String arg = Executions.getCurrent().getParameter("arg1");
         LOG.info(String.format("Argumento [arg1] = %s", arg));
 
-        getSubjectList().addAll(service.getSubjects(Integer.valueOf(arg)));
+        setIdStudent(Integer.valueOf(arg));
+
+        getSubjectList().addAll(service.getSubjects(getIdStudent()));
     }
 
     public GradingFormViewModel() {
@@ -49,6 +51,10 @@ public class GradingFormViewModel extends SubjectForm {
     public void submit() {
         LOG.info(this.getSubject().toString());
         LOG.info(this.getSubjectList().toString());
+
+        service.saveScore(getIdStudent(), getSubject().getId(),
+                getSubject().getScore());
+
     }
 
 }

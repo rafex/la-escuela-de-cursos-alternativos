@@ -11,4 +11,6 @@ public interface StudentService {
 
     List<Subject> getSubjects(int idStudent);
 
+    void saveScore(int idStudent, int idSubject, double score);
+
 }

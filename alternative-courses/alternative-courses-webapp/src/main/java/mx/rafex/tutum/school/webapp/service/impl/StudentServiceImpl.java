@@ -16,6 +16,7 @@ import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.ObjectMapper;
 
 import mx.rafex.tutum.school.model.rest.ResponseRest;
+import mx.rafex.tutum.school.model.rest.ScoreRequestRest;
 import mx.rafex.tutum.school.model.vo.Student;
 import mx.rafex.tutum.school.model.vo.Subject;
 import mx.rafex.tutum.school.webapp.service.ABaseService;
@@ -137,6 +138,53 @@ public class StudentServiceImpl extends ABaseService implements StudentService {
             LOGGER.info(e.getMessage());
         }
         return list;
+    }
+
+    @Override
+    public void saveScore(int idStudent, int idSubject, double score) {
+
+        url = "/api/v01/student/{idStudent}/subject/{idSubject}";
+
+        final Map<String, String> uriVariables = new HashMap<>();
+        uriVariables.put("idStudent", String.valueOf(idStudent));
+        uriVariables.put("idSubject", String.valueOf(idSubject));
+
+        var request = new ScoreRequestRest(score);
+
+        try {
+
+            final ResponseEntity<Object> response = restTemplate.postForEntity(
+                    getUrl(), request, Object.class, uriVariables);
+
+            LOGGER.info(response.toString());
+
+            if (response.getStatusCodeValue() >= 200
+                    && response.getStatusCodeValue() < 300) {
+
+                try {
+
+                    final var body = response.getBody();
+
+                    final var jsonResult = objectMapper
+                            .writeValueAsString(body);
+
+                    LOGGER.info(jsonResult);
+
+                    final var responseObject = objectMapper
+                            .readValue(jsonResult, ResponseRest.class);
+
+                    LOGGER.info(responseObject.toString());
+
+                } catch (final NullPointerException
+                        | JsonProcessingException e) {
+                    LOGGER.info(e.getMessage());
+                }
+            }
+
+        } catch (final Exception e) {
+            LOGGER.info(e.getMessage());
+        }
+
     }
 
 }

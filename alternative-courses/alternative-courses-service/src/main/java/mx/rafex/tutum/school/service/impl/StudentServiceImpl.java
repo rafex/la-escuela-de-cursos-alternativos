@@ -6,14 +6,14 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import mx.rafex.tutum.school.dao.ScoreDao;
 import mx.rafex.tutum.school.dao.StudentDao;
 import mx.rafex.tutum.school.model.entity.EnrollSubject;
-import mx.rafex.tutum.school.model.entity.ScoreEntity;
+import mx.rafex.tutum.school.model.entity.Score;
 import mx.rafex.tutum.school.model.mapper.StudentMapper;
 import mx.rafex.tutum.school.model.mapper.SubjectMapper;
 import mx.rafex.tutum.school.model.vo.Student;
 import mx.rafex.tutum.school.model.vo.Subject;
-import mx.rafex.tutum.school.repository.ScoreRepository;
 import mx.rafex.tutum.school.repository.StudentRepository;
 import mx.rafex.tutum.school.service.StudentService;
 
@@ -30,7 +30,7 @@ public class StudentServiceImpl implements StudentService {
     private StudentDao studentDao;
 
     @Autowired
-    private ScoreRepository scoreRepository;
+    private ScoreDao scoreDao;
 
     @Override
     public List<Student> list(final int id) {
@@ -88,14 +88,12 @@ public class StudentServiceImpl implements StudentService {
     public boolean saveScore(final int idStudent, final int idSubject,
             final double score) {
 
-        final var scoreEntity = new ScoreEntity();
+        final var scoreEntity = new Score();
         scoreEntity.setStudent(idStudent);
         scoreEntity.setSubject(idSubject);
         scoreEntity.setScore(score);
 
-        final var save = scoreRepository.save(scoreEntity);
-
-        return save != null && save.getId() > 0;
+        return scoreDao.save(scoreEntity);
     }
 
 }

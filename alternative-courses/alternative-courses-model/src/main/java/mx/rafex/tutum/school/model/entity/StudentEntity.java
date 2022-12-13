@@ -25,7 +25,7 @@ public class StudentEntity implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id_t_usuarios")
-    private int id;
+    private Integer id;
 
     @Column(name = "nombre")
     private String name;
