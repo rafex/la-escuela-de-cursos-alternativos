@@ -10,6 +10,7 @@ public class SubjectForm {
 
     private List<Subject> subjectList = new ListModelList<Subject>();
     private Subject subject;
+    private int idStudent;
 
     public SubjectForm() {
         super();
@@ -47,6 +48,20 @@ public class SubjectForm {
      */
     public void setSubjectList(List<Subject> subjectList) {
         this.subjectList = subjectList;
+    }
+
+    /**
+     * @return the idStudent
+     */
+    public int getIdStudent() {
+        return idStudent;
+    }
+
+    /**
+     * @param idStudent the idStudent to set
+     */
+    public void setIdStudent(int idStudent) {
+        this.idStudent = idStudent;
     }
 
 }
