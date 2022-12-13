@@ -44,7 +44,7 @@ public final class ResponseHandler {
     public static ResponseEntity<?> response(final String message,
             final HttpStatus status, final Object responseObject) {
 
-        return response(HEADERS, message, HttpStatus.OK, responseObject);
+        return response(HEADERS, message, status, responseObject);
     }
 
     public static ResponseEntity<?> response(final HttpStatus status,

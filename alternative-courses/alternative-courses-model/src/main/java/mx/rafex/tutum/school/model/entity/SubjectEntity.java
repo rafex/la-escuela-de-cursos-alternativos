@@ -9,11 +9,15 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
 
+import lombok.AllArgsConstructor;
 import lombok.Data;
+import lombok.NoArgsConstructor;
 
 @Entity
 @Table(name = "t_materias")
 @Data
+@NoArgsConstructor
+@AllArgsConstructor
 public class SubjectEntity implements Serializable {
 
     private static final long serialVersionUID = 6408350402776327939L;

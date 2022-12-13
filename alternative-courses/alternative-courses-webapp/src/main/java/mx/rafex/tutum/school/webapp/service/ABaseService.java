@@ -9,7 +9,7 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 
 public abstract class ABaseService {
 
-    private static final Logger LOGGER = Logger
+    protected static final Logger LOGGER = Logger
             .getLogger(ABaseService.class.getName());
 
     protected RestTemplate restTemplate;
