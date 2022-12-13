@@ -3,6 +3,7 @@ package mx.rafex.tutum.school.rest;
 import java.util.logging.Logger;
 
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -25,5 +26,10 @@ public interface StudentRest extends Rest {
                     APPLICATION_JSON_UTF8 })
     ResponseEntity<?> enrollSubject(
             @RequestBody(required = true) EnrollRequestRest requestRest);
+
+    @RequestMapping(method = { RequestMethod.GET }, path = {
+            "/{idUsuario}/subject" }, produces = { APPLICATION_JSON_UTF8 })
+    ResponseEntity<?> getSubjects(
+            @PathVariable(name = "idUsuario") String idStudent);
 
 }

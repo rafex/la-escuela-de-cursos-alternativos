@@ -1,6 +1,7 @@
 package mx.rafex.tutum.school.rest.impl;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -27,10 +28,18 @@ public class StudentRestImpl implements StudentRest {
     public ResponseEntity<?> enrollSubject(
             final EnrollRequestRest requestRest) {
 
-        LOG.info("Dentro");
+        if (studentService.enrollSubject(requestRest.getIdStudent(),
+                requestRest.getIdSubject())) {
+            return ResponseHandler.response();
+        }
 
-        return ResponseHandler.response(studentService.enrollSubject(
-                requestRest.getIdStudent(), requestRest.getIdSubject()));
+        return ResponseHandler.response(HttpStatus.INTERNAL_SERVER_ERROR);
+    }
+
+    @Override
+    public ResponseEntity<?> getSubjects(String idStudent) {
+        return ResponseHandler
+                .response(studentService.getSubjects(convert(idStudent)));
     }
 
 }

@@ -1,11 +1,12 @@
 package mx.rafex.tutum.school.dao;
 
-import java.util.List;
-
 import mx.rafex.tutum.school.model.entity.EnrollSubject;
+import mx.rafex.tutum.school.model.entity.StudentSubjects;
 
 public interface StudentDao {
 
-    List<EnrollSubject> enrollSubject(EnrollSubject enrollSubject);
+    boolean enrollSubject(EnrollSubject enrollSubject);
+
+    StudentSubjects getSubjects(int idStudent);
 
 }

@@ -2,23 +2,24 @@ package mx.rafex.tutum.school.service.impl;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import mx.rafex.tutum.school.dao.StudentDao;
 import mx.rafex.tutum.school.model.entity.EnrollSubject;
-import mx.rafex.tutum.school.model.entity.StudentEntity;
 import mx.rafex.tutum.school.model.mapper.StudentMapper;
+import mx.rafex.tutum.school.model.mapper.SubjectMapper;
 import mx.rafex.tutum.school.model.vo.Student;
+import mx.rafex.tutum.school.model.vo.Subject;
 import mx.rafex.tutum.school.repository.StudentRepository;
 import mx.rafex.tutum.school.service.StudentService;
 
 @Service
 public class StudentServiceImpl implements StudentService {
 
-    private final StudentMapper MAPPER = StudentMapper.INSTANCE;
+    private final StudentMapper STUDENT_MAPPER = StudentMapper.INSTANCE;
+    private final SubjectMapper SUBJECT_MAPPER = SubjectMapper.INSTANCE;
 
     @Autowired
     private StudentRepository studentRepository;
@@ -27,34 +28,55 @@ public class StudentServiceImpl implements StudentService {
     private StudentDao studentDao;
 
     @Override
-    public List<Student> list(int id) {
+    public List<Student> list(final int id) {
 
-        List<Student> list = new ArrayList<>();
+        final List<Student> list = new ArrayList<>();
 
         if (id > 0) {
-            Optional<StudentEntity> findById = studentRepository.findById(id);
+            final var findById = studentRepository.findById(id);
 
             if (findById.isPresent()) {
-                list.add(MAPPER.entityToStudent(findById.get()));
+                list.add(STUDENT_MAPPER.entityToStudent(findById.get()));
             }
         }
 
-        Iterable<StudentEntity> findAll = studentRepository.findAll();
+        final var findAll = studentRepository.findAll();
 
         findAll.forEach(s -> {
-            list.add(MAPPER.entityToStudent(s));
+            list.add(STUDENT_MAPPER.entityToStudent(s));
         });
 
         return list;
     }
 
     @Override
-    public boolean enrollSubject(int idStudent, int idSubject) {
+    public boolean enrollSubject(final int idStudent, final int idSubject) {
 
-        List<EnrollSubject> list = studentDao
+        return studentDao
                 .enrollSubject(new EnrollSubject(idStudent, idSubject));
 
-        return false;
+    }
+
+    @Override
+    public mx.rafex.tutum.school.model.vo.StudentSubjects getSubjects(
+            final int idStudent) {
+
+        final var subjects = studentDao.getSubjects(idStudent);
+
+        final var studentSubjects = new mx.rafex.tutum.school.model.vo.StudentSubjects();
+
+        studentSubjects.setStudent(
+                STUDENT_MAPPER.entityToStudent(subjects.getStudent()));
+
+        final List<Subject> listSubject = new ArrayList<>();
+
+        subjects.getSubjects().forEach(entity -> {
+            listSubject.add(SUBJECT_MAPPER.entityToSubject(entity));
+        });
+
+        studentSubjects.setSubjects(listSubject);
+
+        return studentSubjects;
     }
 
 }
