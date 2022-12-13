@@ -4,7 +4,7 @@ import java.util.List;
 
 import org.zkoss.zul.ListModelList;
 
-import mx.rafex.tutum.school.webapp.tmp.Subject;
+import mx.rafex.tutum.school.model.vo.Subject;
 
 public class SubjectForm {
 

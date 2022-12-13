@@ -10,6 +10,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import mx.rafex.tutum.school.model.rest.EnrollRequestRest;
+import mx.rafex.tutum.school.model.rest.ScoreRequestRest;
 
 @RequestMapping("/v01/student")
 public interface StudentRest extends Rest {
@@ -22,14 +23,24 @@ public interface StudentRest extends Rest {
             @RequestParam(required = false, name = "usuario") String student);
 
     @RequestMapping(method = { RequestMethod.POST }, path = {
-            "/subject" }, produces = { APPLICATION_JSON_UTF8 }, consumes = {
-                    APPLICATION_JSON_UTF8 })
+            "/{idStudent}/subject" }, produces = {
+                    APPLICATION_JSON_UTF8 }, consumes = {
+                            APPLICATION_JSON_UTF8 })
     ResponseEntity<?> enrollSubject(
+            @PathVariable(name = "idStudent") int idStudent,
             @RequestBody(required = true) EnrollRequestRest requestRest);
 
+    @RequestMapping(method = { RequestMethod.POST }, path = {
+            "/{idStudent}/subject/{idSubject}" }, produces = {
+                    APPLICATION_JSON_UTF8 }, consumes = {
+                            APPLICATION_JSON_UTF8 })
+    ResponseEntity<?> saveScore(@PathVariable(name = "idStudent") int idStudent,
+            @PathVariable(name = "idSubject") int idSubject,
+            @RequestBody(required = true) ScoreRequestRest requestRest);
+
     @RequestMapping(method = { RequestMethod.GET }, path = {
-            "/{idUsuario}/subject" }, produces = { APPLICATION_JSON_UTF8 })
+            "/{idStudent}/subject" }, produces = { APPLICATION_JSON_UTF8 })
     ResponseEntity<?> getSubjects(
-            @PathVariable(name = "idUsuario") String idStudent);
+            @PathVariable(name = "idStudent") int idStudent);
 
 }

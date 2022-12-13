@@ -13,4 +13,6 @@ public interface StudentService {
 
     StudentSubjects getSubjects(int idStudent);
 
+    boolean saveScore(int idStudent, int idSubject, double score);
+
 }

@@ -6,17 +6,22 @@ import java.util.logging.Logger;
 import org.zkoss.bind.annotation.Init;
 import org.zkoss.zk.ui.Executions;
 import org.zkoss.zk.ui.annotation.Command;
+import org.zkoss.zk.ui.select.annotation.VariableResolver;
+import org.zkoss.zk.ui.select.annotation.WireVariable;
 
 import mx.rafex.tutum.school.webapp.form.SubjectForm;
-import mx.rafex.tutum.school.webapp.tmp.MockSubjectServiceImpl;
-import mx.rafex.tutum.school.webapp.tmp.SubjectService;
+import mx.rafex.tutum.school.webapp.service.StudentService;
 
+@VariableResolver(org.zkoss.zkplus.spring.DelegatingVariableResolver.class)
 public class GradingFormViewModel extends SubjectForm {
 
     private final static Logger LOG = Logger
             .getLogger(GradingFormViewModel.class.getName());
 
-    private SubjectService service = new MockSubjectServiceImpl();
+    @WireVariable("studentServiceImpl")
+    private StudentService service;
+
+//    private SubjectService service = new MockSubjectServiceImpl();
 
     @Init
     public void init() {
@@ -31,17 +36,13 @@ public class GradingFormViewModel extends SubjectForm {
 
         String arg = Executions.getCurrent().getParameter("arg1");
         LOG.info(String.format("Argumento [arg1] = %s", arg));
+
+        getSubjectList().addAll(service.getSubjects(Integer.valueOf(arg)));
     }
 
     public GradingFormViewModel() {
         super();
-        getSubjectList().addAll(service.findByStudent(1));
-    }
 
-    @Command
-    public void search() {
-        getSubjectList().clear();
-        getSubjectList().addAll(service.findByStudent(1));
     }
 
     @Command
