@@ -67,7 +67,7 @@ public class StudentListViewModel {
         LOG.info("Redirec!!!");
         // create a window programmatically and use it as a modal dialog.
         // Executions.sendRedirect("~./zul/form.zul?arg1=hola");
-        Executions.sendRedirect("form?arg1=" + id + "&arg2=dos");
+        Executions.sendRedirect(String.format("form?arg1=%s", id));
 //        Window window = (Window) Executions
 //                .createComponents("~./zul/window_dialog.zul", null, null);
 //        window.doModal();

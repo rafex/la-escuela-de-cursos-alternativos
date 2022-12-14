@@ -27,7 +27,7 @@
 					<listcell label="@init(each.fullName)"></listcell>
 					<listcell label="@init(each.active)"></listcell>
 					<listcell>
-						<button id="orderBtn" label="${labels.list.button}" onClick="@command('getForm',id=each.id))"/>
+						<button label="${labels.list.button}" onClick="@command('getForm',id=each.id))"/>
 					</listcell>
 				</listitem>
 			</template>

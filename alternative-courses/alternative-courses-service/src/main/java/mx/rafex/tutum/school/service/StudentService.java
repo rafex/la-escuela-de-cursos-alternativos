@@ -20,4 +20,6 @@ public interface StudentService {
 
     boolean saveScore(StudentSubjects studentSubjects);
 
+    List<Student> save(List<Student> students);
+
 }

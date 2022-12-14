@@ -7,6 +7,7 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
 
 import lombok.AllArgsConstructor;
@@ -23,7 +24,8 @@ public class StudentEntity implements Serializable {
     private static final long serialVersionUID = -1984898904812100754L;
 
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @SequenceGenerator(name = "mytable_id_seq", sequenceName = "s_alumno", allocationSize = 1)
+    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "mytable_id_seq")
     @Column(name = "id_t_usuarios")
     private Integer id;
 
