@@ -46,7 +46,8 @@ public class StudentSubjectRowMapper implements RowMapper<EnrollSubject>,
             }
 
             subjects.add(new SubjectEntity(rs.getInt("idmateria"),
-                    rs.getString("materia"), rs.getBoolean("mactivo")));
+                    rs.getString("materia"), rs.getBoolean("mactivo"),
+                    rs.getDouble("calificacion")));
 
         }
 
