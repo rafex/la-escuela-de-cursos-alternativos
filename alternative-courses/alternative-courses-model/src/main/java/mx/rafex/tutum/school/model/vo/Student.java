@@ -40,6 +40,10 @@ public class Student implements Serializable {
         this.active = active;
     }
 
+    public Student(int id) {
+        this.id = id;
+    }
+
     public String getFullName() {
         return fullName = String.format("%s %s %s", name, lastname, surname);
     }

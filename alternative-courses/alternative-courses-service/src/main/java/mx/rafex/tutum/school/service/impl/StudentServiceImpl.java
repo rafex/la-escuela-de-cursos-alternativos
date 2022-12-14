@@ -10,18 +10,14 @@ import mx.rafex.tutum.school.dao.ScoreDao;
 import mx.rafex.tutum.school.dao.StudentDao;
 import mx.rafex.tutum.school.model.entity.EnrollSubject;
 import mx.rafex.tutum.school.model.entity.Score;
-import mx.rafex.tutum.school.model.mapper.StudentMapper;
-import mx.rafex.tutum.school.model.mapper.SubjectMapper;
 import mx.rafex.tutum.school.model.vo.Student;
+import mx.rafex.tutum.school.model.vo.StudentSubjects;
 import mx.rafex.tutum.school.model.vo.Subject;
 import mx.rafex.tutum.school.repository.StudentRepository;
 import mx.rafex.tutum.school.service.StudentService;
 
 @Service
 public class StudentServiceImpl implements StudentService {
-
-    private final StudentMapper STUDENT_MAPPER = StudentMapper.INSTANCE;
-    private final SubjectMapper SUBJECT_MAPPER = SubjectMapper.INSTANCE;
 
     @Autowired
     private StudentRepository studentRepository;
@@ -85,15 +81,26 @@ public class StudentServiceImpl implements StudentService {
     }
 
     @Override
-    public boolean saveScore(final int idStudent, final int idSubject,
-            final double score) {
+    public boolean saveScore(final StudentSubjects studentSubjects) {
 
-        final var scoreEntity = new Score();
-        scoreEntity.setStudent(idStudent);
-        scoreEntity.setSubject(idSubject);
-        scoreEntity.setScore(score);
+        if (studentSubjects != null && studentSubjects.getStudent() != null
+                && studentSubjects.getStudent().getId() > 0
+                && studentSubjects.getSubjects() != null
+                && !studentSubjects.getSubjects().isEmpty()) {
+            List<Score> scores = new ArrayList<>();
 
-        return scoreDao.save(scoreEntity);
+            studentSubjects.getSubjects().forEach(subject -> {
+                final var score = new Score();
+                score.setStudent(studentSubjects.getStudent().getId());
+                score.setSubject(subject.getId());
+                score.setScore(subject.getScore());
+                scores.add(score);
+            });
+
+            return scoreDao.save(scores);
+        }
+
+        return false;
     }
 
 }
