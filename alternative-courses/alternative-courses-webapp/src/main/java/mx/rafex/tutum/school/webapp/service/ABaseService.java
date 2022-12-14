@@ -17,6 +17,8 @@ public abstract class ABaseService {
     protected ObjectMapper objectMapper;
     protected String urlBase;
     protected String url;
+    protected String APPLICATION_JSON_UTF8 = "application/json; charset=utf-8";
+    protected String CONTENT_TYPE = "Content-type";
 
     private final String HARD_URL_BASE = "http://34.28.12.213";
 

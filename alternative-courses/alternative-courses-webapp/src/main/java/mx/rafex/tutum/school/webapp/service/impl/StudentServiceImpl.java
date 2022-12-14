@@ -7,6 +7,9 @@ import java.util.Map;
 import java.util.logging.Logger;
 
 import org.springframework.core.env.Environment;
+import org.springframework.http.HttpEntity;
+import org.springframework.http.HttpHeaders;
+import org.springframework.http.HttpMethod;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 import org.springframework.web.client.RestTemplate;
@@ -17,6 +20,7 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 
 import mx.rafex.tutum.school.model.rest.ResponseRest;
 import mx.rafex.tutum.school.model.rest.ScoreRequestRest;
+import mx.rafex.tutum.school.model.rest.SubjectRest;
 import mx.rafex.tutum.school.model.vo.Student;
 import mx.rafex.tutum.school.model.vo.Subject;
 import mx.rafex.tutum.school.webapp.service.ABaseService;
@@ -87,7 +91,7 @@ public class StudentServiceImpl extends ABaseService implements StudentService {
     }
 
     @Override
-    public List<Subject> getSubjects(int idStudent) {
+    public List<Subject> getSubjects(final int idStudent) {
 
         url = "/api/v01/student/{idStudent}/subject";
 
@@ -141,20 +145,34 @@ public class StudentServiceImpl extends ABaseService implements StudentService {
     }
 
     @Override
-    public void saveScore(int idStudent, int idSubject, double score) {
+    public void saveScore(final int idStudent, final List<Subject> subjects) {
 
-        url = "/api/v01/student/{idStudent}/subject/{idSubject}";
+        url = "/api/v01/student/{idStudent}/subject";
 
         final Map<String, String> uriVariables = new HashMap<>();
         uriVariables.put("idStudent", String.valueOf(idStudent));
-        uriVariables.put("idSubject", String.valueOf(idSubject));
 
-        var request = new ScoreRequestRest(score);
+        final var request = new ScoreRequestRest();
+
+        final List<SubjectRest> subjectsRest = new ArrayList<>();
+
+        subjects.forEach(s -> {
+            subjectsRest.add(SUBJECT_MAPPER.subjectToRest(s));
+        });
+
+        request.setSubjects(subjectsRest);
 
         try {
 
-            final ResponseEntity<Object> response = restTemplate.postForEntity(
-                    getUrl(), request, Object.class, uriVariables);
+            final var plainJson = objectMapper.writeValueAsString(request);
+
+            final var headers = new HttpHeaders();
+            headers.set(CONTENT_TYPE, APPLICATION_JSON_UTF8);
+            final var entity = new HttpEntity<>(plainJson,
+                    headers);
+            final ResponseEntity<String> response = restTemplate.exchange(
+                    getUrl(), HttpMethod.PUT, entity, String.class,
+                    uriVariables);
 
             LOGGER.info(response.toString());
 

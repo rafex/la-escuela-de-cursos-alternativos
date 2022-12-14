@@ -1,6 +1,5 @@
 package mx.rafex.tutum.school.webapp.viewModel;
 
-import java.util.Map;
 import java.util.logging.Logger;
 
 import org.zkoss.bind.annotation.Init;
@@ -26,15 +25,14 @@ public class GradingFormViewModel extends SubjectForm {
     @Init
     public void init() {
 
-        Map<String, String[]> parameterMap = Executions.getCurrent()
-                .getParameterMap();
+        final var parameterMap = Executions.getCurrent().getParameterMap();
 
         parameterMap.forEach((k, v) -> {
 
             LOG.info(String.format("Parametro [ %s = %s ]", k, v.toString()));
         });
 
-        String arg = Executions.getCurrent().getParameter("arg1");
+        final var arg = Executions.getCurrent().getParameter("arg1");
         LOG.info(String.format("Argumento [arg1] = %s", arg));
 
         setIdStudent(Integer.valueOf(arg));
@@ -49,11 +47,10 @@ public class GradingFormViewModel extends SubjectForm {
 
     @Command
     public void submit() {
-        LOG.info(this.getSubject().toString());
-        LOG.info(this.getSubjectList().toString());
+        LOG.info(getSubject().toString());
+        LOG.info(getSubjectList().toString());
 
-        service.saveScore(getIdStudent(), getSubject().getId(),
-                getSubject().getScore());
+        service.saveScore(getIdStudent(), getSubjectList());
 
     }
 

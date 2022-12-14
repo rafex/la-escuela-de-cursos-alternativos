@@ -30,12 +30,11 @@ public interface StudentRest extends Rest {
             @PathVariable(name = "idStudent") int idStudent,
             @RequestBody(required = true) EnrollRequestRest requestRest);
 
-    @RequestMapping(method = { RequestMethod.POST }, path = {
-            "/{idStudent}/subject/{idSubject}" }, produces = {
+    @RequestMapping(method = { RequestMethod.PUT }, path = {
+            "/{idStudent}/subject" }, produces = {
                     APPLICATION_JSON_UTF8 }, consumes = {
                             APPLICATION_JSON_UTF8 })
     ResponseEntity<?> saveScore(@PathVariable(name = "idStudent") int idStudent,
-            @PathVariable(name = "idSubject") int idSubject,
             @RequestBody(required = true) ScoreRequestRest requestRest);
 
     @RequestMapping(method = { RequestMethod.GET }, path = {
