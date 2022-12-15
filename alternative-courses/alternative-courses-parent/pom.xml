@@ -76,6 +76,7 @@
 		<javax.persistence-api.version>2.2</javax.persistence-api.version>
 		<postgresql.version>42.5.1</postgresql.version>
 		<httpclient.version>4.5.13</httpclient.version>
+		<java-jwt.version>4.2.1</java-jwt.version>
 	</properties>
 
 	<dependencyManagement>
@@ -177,6 +178,11 @@
 				<groupId>javax.persistence</groupId>
 				<artifactId>javax.persistence-api</artifactId>
 				<version>${javax.persistence-api.version}</version>
+			</dependency>
+			<dependency>
+				<groupId>com.auth0</groupId>
+				<artifactId>java-jwt</artifactId>
+				<version>${java-jwt.version}</version>
 			</dependency>
 			<!-- 3er -->
 

@@ -29,6 +29,7 @@ paths:
         '200':
           description: Successful response
           content:
+            application/json;charset=utf-8: {}
             application/json: {}
   /student:
     get:
@@ -39,7 +40,8 @@ paths:
         '200':
           description: Successful response
           content:
-            application/json: {}
+            application/json;charset=utf-8: {}
+            application/json: {}            
     post:
       tags:
         - Tutum > Students
@@ -67,16 +69,25 @@ paths:
         '200':
           description: Successful response
           content:
+            application/json;charset=utf-8: {}
             application/json: {}
-  /student/2/subject:
+  /student/{idStudent}/subject:
     get:
       tags:
         - Tutum > Students
       summary: List Subject
+      parameters:
+        - name: idStudent
+          in: path
+          schema:
+            type: integer
+            format: int32
+          required: true
       responses:
         '200':
           description: Successful response
           content:
+            application/json;charset=utf-8: {}
             application/json: {}
     put:
       tags:
@@ -93,28 +104,42 @@ paths:
                     calificacion: 3.6
                   - id: 3
                     calificacion: 4.8
+      parameters:
+        - name: idStudent
+          in: path
+          schema:
+            type: integer
+            format: int32
+          required: true
       responses:
         '200':
           description: Successful response
           content:
+            application/json;charset=utf-8: {}
             application/json: {}
-  /student/subject:
     post:
       tags:
         - Tutum > Students
       summary: Enroll Subject
       requestBody:
         content:
-          application/json:
+          application/json;charset=utf-8:
             schema:
               type: object
               example:
-                idUsuario: 2
                 idMateria: 1
+      parameters:
+        - name: idStudent
+          in: path
+          schema:
+            type: integer
+            format: int32
+          required: true
       responses:
         '200':
           description: Successful response
           content:
+            application/json;charset=utf-8: {}
             application/json: {}
   /subject/hello:
     get:
@@ -125,6 +150,7 @@ paths:
         '200':
           description: Successful response
           content:
+            application/json;charset=utf-8: {}
             application/json: {}
   /subject:
     get:
@@ -135,4 +161,5 @@ paths:
         '200':
           description: Successful response
           content:
+            application/json;charset=utf-8: {}
             application/json: {}
