@@ -1,0 +1,8 @@
+description: Body request for Login
+content:
+  application/json:
+    schema:
+      $ref: "../../schemas/login/Login.yaml"
+    example:
+      user: "rafex"
+      password: "1234"

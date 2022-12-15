@@ -1,0 +1,4 @@
+post:
+  $ref: "./drivers-post.yaml"
+get:
+  $ref: "./drivers-get.yaml"

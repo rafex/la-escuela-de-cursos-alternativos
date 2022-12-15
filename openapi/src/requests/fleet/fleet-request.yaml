@@ -1,0 +1,6 @@
+description: Body request for Fleet
+content:
+  application/json:
+    schema:
+      $ref: "../../schemas/fleet/Fleet.yaml"
+    #example:

@@ -1,0 +1,4 @@
+get:
+  $ref: "./fleet-get.yaml"
+post:
+  $ref: "./fleet-post.yaml"

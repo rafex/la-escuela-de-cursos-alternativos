@@ -1,0 +1,13 @@
+summary: Get all drivers
+description: Get all drivers
+security:
+  - ApiKeyAuth: []
+responses:
+  '200':
+    description: Drivers list
+  '500':
+    description: Error generic
+    content:
+      application/json:
+        schema:
+          $ref: "../../schemas/Error.yaml"

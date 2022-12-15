@@ -1,0 +1,28 @@
+{
+  "name": "openapi3-demo",
+  "main": "server.js",
+  "version": "0.1.0",
+  "description": "Demo TUTUM API",
+  "scripts": {
+    "start": "swagger-cli bundle src/openapi.yaml --outfile build/bundle-api.json --type json && nodemon server.js",
+    "valid": "swagger-cli validate src/openapi.yaml",
+    "test": "swagger-cli validate build/bundle-api.yaml",
+    "build": "swagger-cli bundle src/openapi.yaml --outfile build/bundle-api.yaml --type yaml",
+    "postman": "openapi2postmanv2 -s src/openapi.yaml -o build/postman.json -p"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/rafex/la-escuela-de-cursos-alternativos"
+  },
+  "author": "rafex",
+  "license": "ISC",
+  "devDependencies": {
+    "openapi-to-postmanv2": "^4.4.1",
+    "swagger-cli": "^4.0.4"
+  },
+  "dependencies": {
+    "express": "^4.18.2",
+    "nodemon": "^2.0.20",
+    "swagger-ui-express": "^4.6.0"
+  }
+}

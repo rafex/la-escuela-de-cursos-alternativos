@@ -1,0 +1,22 @@
+summary: Signed in Panel X
+description: Signed in Panel X
+# produces and consumes were dropped in v3.0 as @handrews
+# consumes:
+#   - application/json
+# produces:
+#   - application/json
+requestBody:
+  $ref: "../../requests/login/login-request.yaml"
+responses:
+  '200':
+    description: Signed on Panel X
+    content:
+      application/json:
+        schema:
+          $ref: "../../schemas/login/Signed.yaml"
+  '500':
+    description: Error generic
+    content:
+      application/json:
+        schema:
+          $ref: "../../schemas/Error.yaml"
