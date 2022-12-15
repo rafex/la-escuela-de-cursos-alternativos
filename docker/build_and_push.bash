@@ -39,7 +39,7 @@ kubectl set image deployment tutum-demo-1 tutum-demo-1-sha256-1=gcr.io/${PROJECT
 echo "Docker Swagger"
 #cd alternative-courses
 ls -la
-docker build . -t $NAME_AND_TAG_IMAGE_3 -f docker/Dockerfile.webservices
+docker build . -t $NAME_AND_TAG_IMAGE_3 -f docker/Dockerfile.openapi
 docker images
 echo "Docker Tag"
 docker tag $NAME_AND_TAG_IMAGE_3 gcr.io/${PROJECT_ID_GCP}/$NAME_AND_TAG_IMAGE_3
@@ -47,7 +47,7 @@ echo "Docker Push"
 docker push gcr.io/${PROJECT_ID_GCP}/$NAME_AND_TAG_IMAGE_3
 
 echo "Deploy Swagger"
-kubectl set image deployment swagger-1 nginx-1=gcr.io/${PROJECT_ID_GCP}/$NAME_AND_TAG_IMAGE_3
+kubectl set image deployment swagger-1 tutum-openapi-1-sha256-1=gcr.io/${PROJECT_ID_GCP}/$NAME_AND_TAG_IMAGE_3
 
 echo "Docker Build Webservices"
 #cd alternative-courses

@@ -1,6 +1,6 @@
 FROM node:lts-alpine AS builder
 WORKDIR /app
-COPY ./openapi .
+COPY ./openapi/ .
 RUN rm -rf node_modules/ package-lock.json yarn.lock
 RUN apk add git
 RUN corepack enable
