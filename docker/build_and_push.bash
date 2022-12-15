@@ -47,7 +47,7 @@ echo "Docker Push"
 docker push gcr.io/${PROJECT_ID_GCP}/$NAME_AND_TAG_IMAGE_3
 
 echo "Deploy Swagger"
-kubectl set image deployment swagger-1 tutum-demo-1-sha256-1=gcr.io/${PROJECT_ID_GCP}/$NAME_AND_TAG_IMAGE_3
+kubectl set image deployment swagger-1 nginx-1=gcr.io/${PROJECT_ID_GCP}/$NAME_AND_TAG_IMAGE_3
 
 echo "Docker Build Webservices"
 #cd alternative-courses

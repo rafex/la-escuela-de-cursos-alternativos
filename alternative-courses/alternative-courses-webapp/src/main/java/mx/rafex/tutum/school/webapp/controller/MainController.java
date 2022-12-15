@@ -15,4 +15,9 @@ public class MainController {
     public String form() {
         return "form";
     }
+
+    @GetMapping("/login")
+    public String login() {
+        return "login";
+    }
 }
