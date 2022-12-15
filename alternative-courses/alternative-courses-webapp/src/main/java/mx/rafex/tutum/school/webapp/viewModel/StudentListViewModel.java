@@ -4,6 +4,7 @@ import java.util.List;
 import java.util.logging.Logger;
 
 import org.zkoss.bind.annotation.BindingParam;
+import org.zkoss.bind.annotation.Init;
 import org.zkoss.zk.ui.Executions;
 import org.zkoss.zk.ui.annotation.Command;
 import org.zkoss.zk.ui.select.annotation.VariableResolver;
@@ -26,10 +27,15 @@ public class StudentListViewModel {
     @WireVariable("studentServiceImpl")
     private StudentService service;
 
+    @Init
+    public void init() {
+        list.clear();
+        list.addAll(service.list(keyword));
+    }
+
     @Command
     public void search() {
         list.clear();
-//        list.addAll(service.search(keyword));
         list.addAll(service.list(keyword));
     }
 
