@@ -8,7 +8,7 @@
 	<div self="@{define(page)}">
 		<window title="${labels.list.title}" width="600px"
 			border="normal" onOK="@command('search')"
-			viewModel="@id('vm') @init('mx.rafex.tutum.school.webapp.viewModel.StudentListViewModel')"
+			viewModel="@id('vm') @init('mx.rafex.tutum.school.webapp.viewModel.StudentsListViewModel')"
 			style="margin:auto">
 			Keyword:
 			<textbox value="@save(vm.keyword)" />

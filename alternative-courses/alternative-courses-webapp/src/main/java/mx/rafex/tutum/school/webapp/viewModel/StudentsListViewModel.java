@@ -15,10 +15,10 @@ import mx.rafex.tutum.school.model.vo.Student;
 import mx.rafex.tutum.school.webapp.service.StudentService;
 
 @VariableResolver(org.zkoss.zkplus.spring.DelegatingVariableResolver.class)
-public class StudentListViewModel {
+public class StudentsListViewModel {
 
     private final static Logger LOG = Logger
-            .getLogger(StudentListViewModel.class.getName());
+            .getLogger(StudentsListViewModel.class.getName());
 
     private String keyword;
     private List<Student> list = new ListModelList<>();

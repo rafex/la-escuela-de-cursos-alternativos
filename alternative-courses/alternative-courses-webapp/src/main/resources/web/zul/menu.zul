@@ -8,7 +8,7 @@
 
 	<menubar viewModel="@id('vm-common')  @init('mx.rafex.tutum.school.webapp.viewModel.CommonViewmodel')">
 		<menuitem label="${labels.menu.home}" href="/" />
-		<menuitem if="${sec:hasRole('ROLE_USER')}" label="${labels.menu.list.student}" href="/listStudent" />
+		<menuitem if="${sec:hasRole('ROLE_USER')}" label="${labels.menu.list.student}" href="/listStudent?arg1=2" />
 		<menuitem if="${sec:hasRole('ROLE_ADMIN')}" label="${labels.menu.list.teacher}" href="/list" />
 		<menuitem label="${labels.menu.about}" onClick="@command('showAbout')" />
 		<menuitem if="${sec:hasRole('ROLE_USER, ROLE_ADMIN')}" label="${labels.menu.logout}" href="/logout"  />
