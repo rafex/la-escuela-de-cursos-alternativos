@@ -48,11 +48,11 @@ public class SecurityConfig {
                                                                       // web
                                                                       // resource
                                                                       // folder
-                .mvcMatchers("/login", "/logout").permitAll()
-                .mvcMatchers("/", "/list", "/form").hasRole("USER")
-                .mvcMatchers("/admin").hasRole("ADMIN").and().formLogin()
-                .loginPage("/login").defaultSuccessUrl("/list").and().logout()
-                .logoutUrl("/logout").logoutSuccessUrl("/login");
+                .mvcMatchers("/", "/login", "/logout").permitAll()
+                .mvcMatchers("/listStudent").hasRole("USER")
+                .mvcMatchers("/list", "/form").hasRole("ADMIN").and()
+                .formLogin().loginPage("/login").defaultSuccessUrl("/").and()
+                .logout().logoutUrl("/logout").logoutSuccessUrl("/");
 
         return http.build();
     }

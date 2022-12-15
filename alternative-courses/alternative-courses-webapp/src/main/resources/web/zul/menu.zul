@@ -10,7 +10,7 @@
 		<menuitem label="${labels.menu.home}" href="/" />
 		<menuitem if="${sec:hasRole('ROLE_USER')}" label="${labels.menu.list.student}" href="/listStudent" />
 		<menuitem if="${sec:hasRole('ROLE_ADMIN')}" label="${labels.menu.list.teacher}" href="/list" />
-		<menuitem label="${labels.menu.home}" onClick="@command('showAbout')" />
+		<menuitem label="${labels.menu.about}" onClick="@command('showAbout')" />
 		<menuitem if="${sec:hasRole('ROLE_USER, ROLE_ADMIN')}" label="${labels.menu.logout}" href="/logout"  />
 		<menuitem if="${sec:isAnonymous()}" label="${labels.menu.login}" href="/login"  />
 	</menubar>
