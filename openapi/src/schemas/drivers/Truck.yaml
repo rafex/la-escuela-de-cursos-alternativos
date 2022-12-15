@@ -1,0 +1,35 @@
+type: object
+required:
+  - economicNumber
+properties:
+  uuid:
+    type: string
+  economicNumber:
+    type: string
+  status:
+    type: string
+  device1:
+    type: string
+  device2:
+    type: string
+  dates:
+    type: array
+    items:
+      type: string
+  position:
+    type: string
+  plates:
+    type: string
+  type:
+    type: string
+  brand:
+    type: string
+  model:
+    type: string
+  vin:
+    type: string
+  engine:
+    type: string
+  verification:
+    type: string
+ 

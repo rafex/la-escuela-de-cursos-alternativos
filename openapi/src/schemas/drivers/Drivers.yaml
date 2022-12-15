@@ -1,0 +1,38 @@
+type: object
+required:
+  - name
+properties:
+  uuid:
+    type: string
+  idOmnitracs:
+    type: string
+  name:
+    type: string
+  cellPhone:
+    type: string
+  address:
+    type: string
+  curp:
+    type: string
+  rfc:
+    type: string
+  email:
+    type: string
+  age:
+    type: integer
+  nss:
+    type: string
+  status:
+    type: string
+  emergencyContact:
+    type: string
+  emergencyContactPhone:
+    type: string
+  driverLicense:
+    type: string
+  driverLicenseExpirationDate:
+    type: string
+  fleet:
+    $ref: "../fleet/Fleet.yaml"
+  truck:
+    $ref: "Truck.yaml"

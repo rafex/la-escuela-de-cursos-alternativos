@@ -7,10 +7,14 @@ import org.springframework.web.client.RestTemplate;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 
+import mx.rafex.tutum.school.model.mapper.ViewModelMapper;
+
 public abstract class ABaseService {
 
     protected static final Logger LOGGER = Logger
             .getLogger(ABaseService.class.getName());
+
+    protected static final ViewModelMapper MAPPER = ViewModelMapper.INSTANCE;
 
     protected RestTemplate restTemplate;
     protected Environment environment;
@@ -39,7 +43,7 @@ public abstract class ABaseService {
 
     public String getUrl(final String... str) {
 
-        final StringBuilder sb = new StringBuilder(urlBase);
+        final var sb = new StringBuilder(urlBase);
 
         if (url != null && !url.isEmpty()) {
             sb.append(url);
@@ -55,7 +59,7 @@ public abstract class ABaseService {
     }
 
     public String getUrl() {
-        final String[] array = new String[0];
+        final var array = new String[0];
         return getUrl(array);
     }
 

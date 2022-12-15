@@ -1,0 +1,9 @@
+type: object
+required:
+  - name
+properties:
+  uuid:
+    type: string
+  name:
+    type: string
+    

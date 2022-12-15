@@ -9,11 +9,17 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 
+import mx.rafex.tutum.school.model.mapper.StudentMapper;
+import mx.rafex.tutum.school.model.mapper.SubjectMapper;
 import mx.rafex.tutum.school.model.rest.EnrollRequestRest;
 import mx.rafex.tutum.school.model.rest.ScoreRequestRest;
+import mx.rafex.tutum.school.model.rest.StudentsRequestRest;
 
 @RequestMapping("/v01/student")
 public interface StudentRest extends Rest {
+
+    StudentMapper STUDENT_MAPPER = StudentMapper.INSTANCE;
+    SubjectMapper SUBJECT_MAPPER = SubjectMapper.INSTANCE;
 
     Logger LOG = Logger.getLogger(StudentRest.class.getName());
 
@@ -41,5 +47,10 @@ public interface StudentRest extends Rest {
             "/{idStudent}/subject" }, produces = { APPLICATION_JSON_UTF8 })
     ResponseEntity<?> getSubjects(
             @PathVariable(name = "idStudent") int idStudent);
+
+    @RequestMapping(method = { RequestMethod.POST }, produces = {
+            APPLICATION_JSON_UTF8 }, consumes = { APPLICATION_JSON_UTF8 })
+    ResponseEntity<?> save(
+            @RequestBody(required = true) StudentsRequestRest requestRest);
 
 }

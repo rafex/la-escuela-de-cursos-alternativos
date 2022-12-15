@@ -10,6 +10,7 @@ import mx.rafex.tutum.school.dao.ScoreDao;
 import mx.rafex.tutum.school.dao.StudentDao;
 import mx.rafex.tutum.school.model.entity.EnrollSubject;
 import mx.rafex.tutum.school.model.entity.Score;
+import mx.rafex.tutum.school.model.entity.StudentEntity;
 import mx.rafex.tutum.school.model.vo.Student;
 import mx.rafex.tutum.school.model.vo.StudentSubjects;
 import mx.rafex.tutum.school.model.vo.Subject;
@@ -101,6 +102,24 @@ public class StudentServiceImpl implements StudentService {
         }
 
         return false;
+    }
+
+    @Override
+    public List<Student> save(List<Student> students) {
+
+        List<StudentEntity> studentsEntity = STUDENT_MAPPER
+                .studentToEntity(students);
+
+        Iterable<StudentEntity> saveAll = studentRepository
+                .saveAll(studentsEntity);
+
+        List<Student> list = new ArrayList<>();
+
+        saveAll.forEach(entity -> {
+            list.add(STUDENT_MAPPER.entityToStudent(entity));
+        });
+
+        return list;
     }
 
 }

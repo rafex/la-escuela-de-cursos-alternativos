@@ -1,0 +1,165 @@
+openapi: 3.0.0
+info:
+  title: Demos
+  version: 1.0.0
+servers:
+  - url: http://{server}:{port}/{basePath}
+    description: Develop
+    variables:
+      server:
+        default: localhost
+        description: this value is assigned by the service provider, in this example `gigantic-server.com`
+      port:
+        default: '8080'
+        description: port service rest
+      basePath:
+        default: 'api/v01'
+        description: example `v01`
+tags:
+  - name: Tutum
+  - name: Tutum > Students
+  - name: Tutum > Subject
+paths:
+  /student/hello:
+    get:
+      tags:
+        - Tutum > Students
+      summary: Hello
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json;charset=utf-8: {}
+            application/json: {}
+  /student:
+    get:
+      tags:
+        - Tutum > Students
+      summary: List
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json;charset=utf-8: {}
+            application/json: {}            
+    post:
+      tags:
+        - Tutum > Students
+      summary: Save
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              example:
+                usuarios:
+                  - id: 1
+                    nombre: John
+                    apellidoPaterno: Dow
+                    apellidoMaterno: Down JR
+                    activo: true
+                    nombreCompleto: John Dow Down
+                  - id: 2
+                    nombre: Pan
+                    apellidoPaterno: Romero
+                    apellidoMaterno: Down
+                    activo: true
+                    nombreCompleto: John Dow Down
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json;charset=utf-8: {}
+            application/json: {}
+  /student/{idStudent}/subject:
+    get:
+      tags:
+        - Tutum > Students
+      summary: List Subject
+      parameters:
+        - name: idStudent
+          in: path
+          schema:
+            type: integer
+            format: int32
+          required: true
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json;charset=utf-8: {}
+            application/json: {}
+    put:
+      tags:
+        - Tutum > Students
+      summary: Save Score
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              example:
+                materias:
+                  - id: 2
+                    calificacion: 3.6
+                  - id: 3
+                    calificacion: 4.8
+      parameters:
+        - name: idStudent
+          in: path
+          schema:
+            type: integer
+            format: int32
+          required: true
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json;charset=utf-8: {}
+            application/json: {}
+    post:
+      tags:
+        - Tutum > Students
+      summary: Enroll Subject
+      requestBody:
+        content:
+          application/json;charset=utf-8:
+            schema:
+              type: object
+              example:
+                idMateria: 1
+      parameters:
+        - name: idStudent
+          in: path
+          schema:
+            type: integer
+            format: int32
+          required: true
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json;charset=utf-8: {}
+            application/json: {}
+  /subject/hello:
+    get:
+      tags:
+        - Tutum > Subject
+      summary: Hello
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json;charset=utf-8: {}
+            application/json: {}
+  /subject:
+    get:
+      tags:
+        - Tutum > Subject
+      summary: List
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json;charset=utf-8: {}
+            application/json: {}

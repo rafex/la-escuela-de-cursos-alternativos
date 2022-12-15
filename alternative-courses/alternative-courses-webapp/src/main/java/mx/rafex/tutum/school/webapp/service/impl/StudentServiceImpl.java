@@ -20,6 +20,7 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 
 import mx.rafex.tutum.school.model.rest.ResponseRest;
 import mx.rafex.tutum.school.model.rest.ScoreRequestRest;
+import mx.rafex.tutum.school.model.rest.StudentRequestRest;
 import mx.rafex.tutum.school.model.rest.SubjectRest;
 import mx.rafex.tutum.school.model.vo.Student;
 import mx.rafex.tutum.school.model.vo.Subject;
@@ -74,9 +75,12 @@ public class StudentServiceImpl extends ABaseService implements StudentService {
 
                     LOGGER.info(responseObject.toString());
 
-                    list = objectMapper.convertValue(responseObject.getData(),
-                            new TypeReference<List<Student>>() {
+                    var listRest = objectMapper.convertValue(
+                            responseObject.getData(),
+                            new TypeReference<List<StudentRequestRest>>() {
                             });
+
+                    list = MAPPER.restToStudents(listRest);
 
                 } catch (final NullPointerException
                         | JsonProcessingException e) {
@@ -168,8 +172,7 @@ public class StudentServiceImpl extends ABaseService implements StudentService {
 
             final var headers = new HttpHeaders();
             headers.set(CONTENT_TYPE, APPLICATION_JSON_UTF8);
-            final var entity = new HttpEntity<>(plainJson,
-                    headers);
+            final var entity = new HttpEntity<>(plainJson, headers);
             final ResponseEntity<String> response = restTemplate.exchange(
                     getUrl(), HttpMethod.PUT, entity, String.class,
                     uriVariables);

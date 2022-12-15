@@ -1,49 +1,21 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
-                    	
-  
-  
-  
-  
-  <modelVersion>4.0.0</modelVersion>
-          
-  
-  
-  
-  
-  <groupId>mx.rafex.tutum.school</groupId>
-          
-  
-  
-  
-  <artifactId>alternative-courses</artifactId>
-          
-  
-  
-  
-  <version>1.0.0.0-SNAPSHOT</version>
-          
-  
-  
-  
-  
-  <packaging>pom</packaging>
-          
-  
-  
-  
-  <name>${project.artifactId}</name>
-          
-  
-  
-  
-  <url>https://rafex.dev</url>
-          
-  
-  
-  
-  
-  <description>
+
+	<modelVersion>4.0.0</modelVersion>
+
+	<groupId>mx.rafex.tutum.school</groupId>
+
+	<artifactId>alternative-courses</artifactId>
+
+	<version>1.0.0.0-SNAPSHOT</version>
+
+	<packaging>pom</packaging>
+
+	<name>${project.artifactId}</name>
+
+	<url>https://rafex.dev</url>
+
+	<description>
 		Caso: La escuela de ?cursos alternativos?
 		Cierta escuela que ofrece cursos especializados en diversas ciencias del conocimiento ha tenido un
 		crecimiento inesperado, por lo mismo han surgido necesidades que deben ser satisfechas.
@@ -61,43 +33,22 @@
 		Utilice la base de datos que se encuentra en la parte 2 de este documento, para el desarrollo de la
 		prueba.
 	</description>
-          
-  
-  
-  
-  
-  <modules>
-                    
-    
-    
-    
-    <module>alternative-courses-parent</module>
-                
-    
-    
-    
-    <module>alternative-courses-model</module>
-                    
-    
-    
-    
-    <module>alternative-courses-webapp</module>
-                    
-    
-    
-    
-    <module>alternative-courses-service</module>
-              
-    
-    
-    <module>alternative-courses-rest</module>
-          
-    
-    <module>alternative-courses-repository</module>
-      
-  </modules>
-        
 
+
+	<modules>
+
+		<module>alternative-courses-parent</module>
+
+		<module>alternative-courses-model</module>
+
+		<module>alternative-courses-repository</module>
+		
+		<module>alternative-courses-service</module>
+		
+		<module>alternative-courses-rest</module>
+
+		<module>alternative-courses-webapp</module>
+	</modules>
 
 
 </project>
