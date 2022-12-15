@@ -11,8 +11,18 @@ public class MainController {
         return "list";
     }
 
+    @GetMapping("/listStudent")
+    public String listStudent() {
+        return "listStudent";
+    }
+
     @GetMapping("/form")
     public String form() {
         return "form";
+    }
+
+    @GetMapping("/login")
+    public String login() {
+        return "login";
     }
 }

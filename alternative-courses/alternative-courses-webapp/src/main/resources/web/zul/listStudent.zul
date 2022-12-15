@@ -8,7 +8,7 @@
 	<div self="@{define(page)}">
 		<window title="${labels.form.title}" width="600px"
 			border="normal"
-			viewModel="@id('vm') @init('mx.rafex.tutum.school.webapp.viewModel.GradingFormViewModel')"
+			viewModel="@id('vm') @init('mx.rafex.tutum.school.webapp.viewModel.ScoreListViewModel')"
 			validationMessages="@id('vmsgs')"
 			form="@id('fx') @load(vm.subject) @save(vm.subject, before='submit')"
 			style="margin:auto">
@@ -22,17 +22,14 @@
 				<template name="model">
 					<row>
 						<label value="@init(each.name)" width="150px" />
-						<hlayout>
-							<textbox value="@bind(each.score)" width="150px"
-								tabindex="1" />
-						</hlayout>
+						<label value="@init(each.score)" width="150px" />
 					</row>
 				</template>
 			</grid>
 			<separator />
 			<label visible="@load(empty vmsgs)"
 				value="@load(empty vmsgs ? 'Form successfully submitted!' : '', before='submit')" />
-			<button label="Submit" onClick="@command('submit')"
+			<button label="Download" onClick="@command('submit')"
 				width="100px" height="30px" />
 		</window>
 	</div>
