@@ -7,10 +7,10 @@ servers:
     description: Develop
     variables:
       server:
-        default: localhost
+        default: 34.28.12.213
         description: this value is assigned by the service provider, in this example `gigantic-server.com`
       port:
-        default: '8080'
+        default: '80'
         description: port service rest
       basePath:
         default: 'api/v01'
