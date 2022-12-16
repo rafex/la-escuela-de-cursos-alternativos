@@ -208,4 +208,15 @@ public class StudentServiceImpl extends ABaseService implements StudentService {
 
     }
 
+    @Override
+    public String report(int idStudent) {
+
+        this.url = "/api/v01/report/{idStudent}";
+
+        String url = getUrl().replace("{idStudent}", String.valueOf(idStudent));
+
+        return url;
+
+    }
+
 }

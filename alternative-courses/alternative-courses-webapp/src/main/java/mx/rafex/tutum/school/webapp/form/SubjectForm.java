@@ -11,6 +11,7 @@ public class SubjectForm {
     private List<Subject> subjectList = new ListModelList<Subject>();
     private Subject subject;
     private int idStudent;
+    private String url;
 
     public SubjectForm() {
         super();
@@ -62,6 +63,20 @@ public class SubjectForm {
      */
     public void setIdStudent(int idStudent) {
         this.idStudent = idStudent;
+    }
+
+    /**
+     * @return the url
+     */
+    public String getUrl() {
+        return url;
+    }
+
+    /**
+     * @param url the url to set
+     */
+    public void setUrl(String url) {
+        this.url = url;
     }
 
 }

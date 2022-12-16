@@ -1,10 +1,14 @@
 package mx.rafex.tutum.school.service.impl;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
+import java.util.logging.Logger;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.util.ResourceUtils;
 
 import mx.rafex.tutum.school.dao.ScoreDao;
 import mx.rafex.tutum.school.dao.StudentDao;
@@ -16,9 +20,17 @@ import mx.rafex.tutum.school.model.vo.StudentSubjects;
 import mx.rafex.tutum.school.model.vo.Subject;
 import mx.rafex.tutum.school.repository.StudentRepository;
 import mx.rafex.tutum.school.service.StudentService;
+import net.sf.jasperreports.engine.JREmptyDataSource;
+import net.sf.jasperreports.engine.JasperCompileManager;
+import net.sf.jasperreports.engine.JasperFillManager;
+import net.sf.jasperreports.engine.JasperPrint;
+import net.sf.jasperreports.engine.data.JRBeanCollectionDataSource;
 
 @Service
 public class StudentServiceImpl implements StudentService {
+
+    private final static Logger LOG = Logger
+            .getLogger(StudentServiceImpl.class.getName());
 
     @Autowired
     private StudentRepository studentRepository;
@@ -125,6 +137,47 @@ public class StudentServiceImpl implements StudentService {
         });
 
         return list;
+    }
+
+    @Override
+    public JasperPrint report(int idStudent) {
+
+//        List<Subject> subjectList = new ArrayList<>();
+//
+//        subjectList.add(new Subject("Ingles", 9.4));
+//        subjectList.add(new Subject("Geografia", 9.4));
+
+        StudentSubjects studentSubjects = getSubjects(idStudent);
+
+        if (studentSubjects != null && studentSubjects.getSubjects() != null
+                && !studentSubjects.getSubjects().isEmpty()) {
+
+            List<Subject> subjectList = studentSubjects.getSubjects();
+
+            try {
+
+                // dynamic parameters required for report
+                Map<String, Object> empParams = new HashMap<String, Object>();
+                empParams.put("CompanyName", "Tecnologico patito de SA de CV");
+                empParams.put("scoreData",
+                        new JRBeanCollectionDataSource(subjectList));
+
+                JasperPrint empReport = JasperFillManager.fillReport(
+                        JasperCompileManager.compileReport(ResourceUtils
+                                .getFile("classpath:score-list.jrxml")
+                                .getAbsolutePath()) // path of the jasper
+                                                    // report
+                        , empParams // dynamic parameters
+                        , new JREmptyDataSource());
+
+                return empReport;
+            } catch (Exception e) {
+                LOG.info(e.getMessage());
+            }
+
+        }
+
+        throw new RuntimeException("Fallo crear el reporte");
     }
 
 }

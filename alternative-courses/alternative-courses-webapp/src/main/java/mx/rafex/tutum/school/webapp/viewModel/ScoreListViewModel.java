@@ -33,9 +33,13 @@ public class ScoreListViewModel extends SubjectForm {
         final var arg = Executions.getCurrent().getParameter("arg1");
         LOG.info(String.format("Argumento [arg1] = %s", arg));
 
-        setIdStudent(Integer.valueOf(arg));
+        var idStudent = Integer.valueOf(arg);
+
+        setIdStudent(idStudent);
 
         getSubjectList().addAll(service.getSubjects(getIdStudent()));
+
+        setUrl(service.report(getIdStudent()));
     }
 
     public ScoreListViewModel() {
