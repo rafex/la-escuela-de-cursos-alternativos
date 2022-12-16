@@ -16,4 +16,6 @@ public interface StudentService {
 
     void saveScore(int idStudent, List<Subject> subjects);
 
+    String report(int idStudent);
+
 }
