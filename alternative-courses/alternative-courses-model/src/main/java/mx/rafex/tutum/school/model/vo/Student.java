@@ -27,7 +27,7 @@ public class Student implements Serializable {
     private String fullName;
 
     public Student() {
-
+        active = true;
     }
 
     public Student(int id, String name, String lastname, String surname,

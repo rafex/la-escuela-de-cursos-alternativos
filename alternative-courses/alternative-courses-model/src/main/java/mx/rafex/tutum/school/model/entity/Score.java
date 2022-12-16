@@ -16,6 +16,12 @@ public class Score implements Serializable {
         registrationDate = LocalDateTime.now();
     }
 
+    public Score(int student, int subject) {
+        this();
+        this.student = student;
+        this.subject = subject;
+    }
+
     private Integer id;
 
     private int subject;

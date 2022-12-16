@@ -15,7 +15,7 @@
 			<button label="Search" iconSclass="z-icon-search"
 				onClick="@command('search')" style="margin: 0 0 5px 5px" />
 			<listbox model="@init(vm.list)"
-				emptyMessage="No car found in the result" rows="5"
+				emptyMessage="No found in the result" rows="5"
 				selectedItem="@save(vm.selected)">
 				<listhead sizable="true">
 					<listheader label="ID" width="10%" />

@@ -12,10 +12,11 @@ import org.zkoss.zk.ui.select.annotation.WireVariable;
 import org.zkoss.zul.ListModelList;
 
 import mx.rafex.tutum.school.model.vo.Student;
+import mx.rafex.tutum.school.webapp.form.SubjectForm;
 import mx.rafex.tutum.school.webapp.service.StudentService;
 
 @VariableResolver(org.zkoss.zkplus.spring.DelegatingVariableResolver.class)
-public class StudentsListViewModel {
+public class StudentsListViewModel extends SubjectForm {
 
     private final static Logger LOG = Logger
             .getLogger(StudentsListViewModel.class.getName());

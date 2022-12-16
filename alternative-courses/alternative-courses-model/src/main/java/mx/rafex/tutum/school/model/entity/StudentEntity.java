@@ -12,12 +12,10 @@ import javax.persistence.Table;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
-import lombok.NoArgsConstructor;
 
 @Entity
 @Table(name = "t_alumnos")
 @Data
-@NoArgsConstructor
 @AllArgsConstructor
 public class StudentEntity implements Serializable {
 
@@ -40,5 +38,9 @@ public class StudentEntity implements Serializable {
 
     @Column(name = "activo")
     private boolean active;
+
+    public StudentEntity() {
+        active = true;
+    }
 
 }
