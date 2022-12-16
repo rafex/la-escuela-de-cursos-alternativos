@@ -23,7 +23,7 @@ public class SecurityConfig {
         manager.createUser(users.username("user").password("password")
                 .roles("USER").build());
         manager.createUser(users.username("admin").password("password")
-                .roles("USER", "ADMIN").build());
+                .roles("ADMIN").build());
         return manager;
     }
 

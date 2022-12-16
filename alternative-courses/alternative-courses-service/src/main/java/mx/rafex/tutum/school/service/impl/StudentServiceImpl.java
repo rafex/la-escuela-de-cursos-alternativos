@@ -54,9 +54,14 @@ public class StudentServiceImpl implements StudentService {
     @Override
     public boolean enrollSubject(final int idStudent, final int idSubject) {
 
-        return studentDao
-                .enrollSubject(new EnrollSubject(idStudent, idSubject));
+        if (studentDao.enrollSubject(new EnrollSubject(idStudent, idSubject))) {
 
+            scoreDao.save(new Score(idStudent, idSubject));
+
+            return true;
+        }
+
+        return false;
     }
 
     @Override

@@ -20,8 +20,6 @@ public class ScoreListViewModel extends SubjectForm {
     @WireVariable("studentServiceImpl")
     private StudentService service;
 
-//    private SubjectService service = new MockSubjectServiceImpl();
-
     @Init
     public void init() {
 
