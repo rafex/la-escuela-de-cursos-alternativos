@@ -27,10 +27,12 @@
 				</template>
 			</grid>
 			<separator />
-			<label visible="@load(empty vmsgs)"
+			<button label="download" href="@load(vm.url)" target="_blank"/>
+			
+			<!-- <label visible="@load(empty vmsgs)"
 				value="@load(empty vmsgs ? 'Form successfully submitted!' : '', before='submit')" />
 			<button label="Download" onClick="@command('submit')"
-				width="100px" height="30px" />
+				width="100px" height="30px" /> -->
 		</window>
 	</div>
 </zk>
