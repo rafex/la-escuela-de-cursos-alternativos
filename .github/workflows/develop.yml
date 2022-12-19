@@ -32,5 +32,5 @@ jobs:
         run: |-
           cd ${GITHUB_WORKSPACE}/alternative-courses
           chmod +x mvnw
-          ./mvnw -B package --file pom.xml
+          ./mvnw -B package --file pom.xml -DskipTests
           
