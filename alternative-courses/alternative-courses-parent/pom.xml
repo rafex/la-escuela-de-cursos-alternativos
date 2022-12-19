@@ -63,7 +63,7 @@
 
 		<junit-bom.version>5.7.2</junit-bom.version>
 		<mssql-jdbc.version>9.2.1.jre11</mssql-jdbc.version>
-		<jackson.version>2.13.3</jackson.version>
+		<jackson.version>2.13.4</jackson.version>
 		<apache.poi.version>5.2.2</apache.poi.version>
 		<opencsv.version>5.6</opencsv.version>
 		<azure-storage-blob.version>12.17.1</azure-storage-blob.version>
