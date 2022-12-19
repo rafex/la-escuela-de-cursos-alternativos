@@ -37,7 +37,7 @@ jobs:
         run: |-
           cd ${GITHUB_WORKSPACE}/alternative-courses
           chmod +x mvnw
-          ./mvnw -B package --file pom.xml
+          ./mvnw -B package --file pom.xml -DskipTests
           cp ./alternative-courses-webapp/target/alternative-courses-webapp-1.0-SNAPSHOT.jar ${GITHUB_WORKSPACE}/artifact/webapp.jar
           cp ./alternative-courses-rest/target/alternative-courses-rest-1.0-SNAPSHOT.jar ${GITHUB_WORKSPACE}/artifact/webservices.jar
       - 
