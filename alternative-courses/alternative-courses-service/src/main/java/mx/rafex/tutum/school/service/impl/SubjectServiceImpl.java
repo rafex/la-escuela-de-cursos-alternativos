@@ -1,23 +1,42 @@
 package mx.rafex.tutum.school.service.impl;
 
-import java.util.LinkedList;
+import java.util.ArrayList;
 import java.util.List;
 
-import mx.rafex.tutum.school.model.Subject;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+
+import mx.rafex.tutum.school.model.vo.Subject;
+import mx.rafex.tutum.school.repository.SubjectRepository;
 import mx.rafex.tutum.school.service.SubjectService;
 
+@Service
 public class SubjectServiceImpl implements SubjectService {
 
-    private List<Subject> list = new LinkedList<Subject>();
-
-    public SubjectServiceImpl() {
-        super();
-
-    }
+    @Autowired
+    private SubjectRepository repository;
 
     @Override
-    public List<Subject> findByStudent(Integer id) {
+    public List<Subject> list(final Integer id) {
+
+        final List<Subject> list = new ArrayList<>();
+
+        if (id != null && id > 0) {
+            final var findById = repository.findById(id);
+
+            if (findById.isPresent()) {
+                list.add(SUBJECT_MAPPER.entityToSubject(findById.get()));
+            }
+        }
+
+        final var findAll = repository.findAll();
+
+        findAll.forEach(s -> {
+            list.add(SUBJECT_MAPPER.entityToSubject(s));
+        });
+
         return list;
+
     }
 
 }

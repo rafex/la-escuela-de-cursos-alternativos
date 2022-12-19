@@ -1,0 +1,4 @@
+post:
+  $ref: "./customers-post.yaml"
+get:
+  $ref: "./customers-get.yaml"

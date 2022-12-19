@@ -1,0 +1,44 @@
+openapi: "3.0.3"
+info:
+  version: 0.1.0
+  title: API Omnitracs
+  description: Documentation API Omnitracs
+  contact:
+    name: API Support
+    url: http://www.example.com/support
+    email: support@example.com
+
+servers:
+  - url: http://{server}:{port}/{basePath}
+    description: Develop
+    variables:
+      server:
+        default: localhost
+        description: this value is assigned by the service provider, in this example `gigantic-server.com`
+      port:
+        default: '8080'
+        description: port service rest
+      basePath:
+        default: 'api'
+        description: example `v01`
+  - url: https://api.example.com/v1
+    description: Production
+  - url: http://staging-api.example.com
+    description: Staging
+
+components:
+  securitySchemes:
+    ApiKeyAuth:        # arbitrary name for the security scheme
+      type: apiKey
+      in: header       # can be "header", "query" or "cookie"
+      name: jwt
+
+paths:
+  /login:
+    $ref: "paths/login/login.yaml"
+  /customers:
+    $ref: "paths/customers/customers.yaml"
+  /drivers:
+    $ref: "paths/drivers/drivers.yaml"
+  /fleet:
+    $ref: "paths/fleet/fleet.yaml"

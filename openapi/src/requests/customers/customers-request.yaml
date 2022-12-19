@@ -1,0 +1,16 @@
+description: Body request for Login
+content:
+  application/json:
+    schema:
+      $ref: "../../schemas/customers/Customer.yaml"
+    example:
+      uuid: "123e4567-e89b-12d3-a456-426655440000"
+      name: "Walmart"
+      businessName: "Walmart S.A. de C.V."
+      contact: "José José"
+      email: "mail@walmart.com"
+      phone: "5580778866"
+      rfc: "LOFD326732Q234"
+      address: "algun lugar del mundo"
+      plan: "Básico"
+      status: "Activo"

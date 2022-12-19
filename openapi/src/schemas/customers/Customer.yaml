@@ -1,0 +1,24 @@
+type: object
+required:
+  - name
+properties:
+  uuid:
+    type: string
+  name:
+    type: string
+  businessName:
+    type: string
+  contact:
+    type: string
+  email:
+    type: string
+  phone:
+    type: string
+  rfc:
+    type: string
+  address:
+    type: string
+  plan:
+    type: string
+  status:
+    type: string

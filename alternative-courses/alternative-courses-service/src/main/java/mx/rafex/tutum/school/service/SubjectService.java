@@ -2,10 +2,13 @@ package mx.rafex.tutum.school.service;
 
 import java.util.List;
 
-import mx.rafex.tutum.school.model.Subject;
+import mx.rafex.tutum.school.model.mapper.SubjectMapper;
+import mx.rafex.tutum.school.model.vo.Subject;
 
 public interface SubjectService {
 
-    List<Subject> findByStudent(Integer id);
+    SubjectMapper SUBJECT_MAPPER = SubjectMapper.INSTANCE;
+
+    List<Subject> list(Integer id);
 
 }

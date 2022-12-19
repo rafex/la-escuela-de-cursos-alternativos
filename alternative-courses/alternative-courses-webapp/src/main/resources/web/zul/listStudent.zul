@@ -1,0 +1,38 @@
+<?init class="org.zkoss.zk.ui.util.Composition" arg0="~./zul/page_template.zul"?>
+<zk xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns="http://www.zkoss.org/2005/zul"
+	xmlns:h="http://www.w3.org/1999/xhtml"
+	xsi:schemaLocation="
+      http://www.zkoss.org/2005/zul https://www.zkoss.org/2005/zul/zul.xsd
+      http://www.w3.org/1999/xhtml https://www.w3.org/2002/08/xhtml/xhtml1-strict.xsd">
+	<div self="@{define(page)}">
+		<window title="${list.list.title2}" width="600px"
+			border="normal"
+			viewModel="@id('vm') @init('mx.rafex.tutum.school.webapp.viewModel.ScoreListViewModel')"
+			validationMessages="@id('vmsgs')"
+			form="@id('fx') @load(vm.subject) @save(vm.subject, before='submit')"
+			style="margin:auto">
+
+			<grid model="@init(vm.subjectList)"
+				emptyMessage="Nothing in Inbox.">
+				<columns>
+					<column label="${labels.form.subject}" width="120px" />
+					<column label="${labels.form.grade}" />
+				</columns>
+				<template name="model">
+					<row>
+						<label value="@init(each.name)" width="150px" />
+						<label value="@init(each.score)" width="150px" />
+					</row>
+				</template>
+			</grid>
+			<separator />
+			<button label="download" href="@load(vm.url)" target="_blank"/>
+			
+			<!-- <label visible="@load(empty vmsgs)"
+				value="@load(empty vmsgs ? 'Form successfully submitted!' : '', before='submit')" />
+			<button label="Download" onClick="@command('submit')"
+				width="100px" height="30px" /> -->
+		</window>
+	</div>
+</zk>

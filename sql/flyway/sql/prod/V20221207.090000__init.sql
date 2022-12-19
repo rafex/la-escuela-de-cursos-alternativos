@@ -10,9 +10,7 @@ CREATE TABLE IF NOT EXISTS public.t_alumnos
     ap_materno character varying(80) COLLATE pg_catalog."default",
     activo boolean,
     CONSTRAINT t_alumnos_pkey PRIMARY KEY (id_t_usuarios)
-)
-
-TABLESPACE pg_default;
+) TABLESPACE pg_default;
 
 ALTER TABLE IF EXISTS public.t_alumnos
     OWNER to postgres;
@@ -35,9 +33,7 @@ CREATE TABLE IF NOT EXISTS public.t_materias
     nombre character varying(80) COLLATE pg_catalog."default",
     activo boolean,
     CONSTRAINT t_materias_pkey PRIMARY KEY (id_t_materias)
-)
-
-TABLESPACE pg_default;
+) TABLESPACE pg_default;
 
 ALTER TABLE IF EXISTS public.t_materias
     OWNER to postgres;
@@ -62,10 +58,8 @@ CREATE TABLE IF NOT EXISTS public.t_calificaciones
     calificacion numeric(10,2),
     CONSTRAINT t_calificaciones_pkey PRIMARY KEY (id_t_calificaciones),
     CONSTRAINT t_calificaciones_materias_fkey FOREIGN KEY(id_t_materias) REFERENCES t_materias(id_t_materias),
-    CONSTRAINT t_calificaciones_alumnos_fkey FOREIGN KEY(id_t_usuarios) REFERENCES t_alumnos(id_t_usuarios),
-)
-
-TABLESPACE pg_default;
+    CONSTRAINT t_calificaciones_alumnos_fkey FOREIGN KEY(id_t_usuarios) REFERENCES t_alumnos(id_t_usuarios)
+) TABLESPACE pg_default;
 
 ALTER TABLE IF EXISTS public.t_calificaciones
     OWNER to postgres;

@@ -1,0 +1,25 @@
+<window id="modalDialog" title="Coffee Order">
+    <vlayout>
+        <grid>
+            <columns>
+                <column hflex="1" label="Name" />
+                <column hflex="2" label="Coffee Type" align="center" />
+            </columns>
+            <rows>
+                <row>
+                    <label value="Evan" />
+                    <label value="Java" />
+                </row>
+                <row>
+                    <label value="Billy" />
+                    <label value="Latte" />
+                </row>
+                <row>
+                    <label value="Roger" />
+                    <label value="Americano" />
+                </row>
+            </rows>
+        </grid>
+        <button id="closeBtn" hflex="1" label="close"/>
+    </vlayout>
+</window>
